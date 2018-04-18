@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <a href="{% url 'home'%}">Home</a>
+        <a href="{% url 'teamindex'%}">Team Index</a>
+        <a href="{% url 'divisionindex'%}">Division Index</a>
+
+        <h1>Research Division Team Index</h1>
+        <table>
+            <tr>
+                <th>Team Number</th>
+                <th>OPR</th>
+                <th>OPR Percentile</th>
+                <th>Max Score</th>
+                <th>Max Score Percentile</th>
+                <th>Average Rank</th>
+            </tr>
+            {% for team in teams %}
+            <tr>
+                <td><a href="{% url 'dashboard' team.name %}">{{ team.name }}</a></td>
+                <td>{{ team.opr }}</td>
+                <td>{{ team.opr_percentile }}%</td>
+                <td>{{ team.mscore }}</td>
+                <td>{{ team.mscore_percentile }}%</td>
+                <td>{{ team.rank }}</td>
+            </tr>
+                {% endfor %}
+        </table>
+    </body>
+</html>

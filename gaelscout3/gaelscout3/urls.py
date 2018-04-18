@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from teamindex import views
 from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
+    path('divisionindex/', views.divisionindex, name='divisionindex'),
     path('teamindex/', views.teamindex, name='teamindex'),
     path('', views.home, name='home'),
     path('<str:team_number>/dashboard/', views.dashboard, name='dashboard'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

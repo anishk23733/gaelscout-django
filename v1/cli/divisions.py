@@ -10,7 +10,7 @@ import pygsheets
 
 def predictions(division):
     gc = pygsheets.authorize(service_file='service_creds.json')
-    sh = gc.open('Bot_Predictions')
+    sh = gc.open('VEX Worlds 2018 High School Divisions')
     output = gc.open('Engineering Division')
 
     divisions = ["Science", "Technology", "Research", "Engineering", "Arts", "Math"]
@@ -171,4 +171,4 @@ def predictions(division):
     print("Completed")
     print(output.url)
 
-predictions("Engineering")
+predictions("Research")

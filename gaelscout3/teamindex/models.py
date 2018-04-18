@@ -20,13 +20,18 @@ class ResearchTeams(models.Model):
                                 decimal_places=2)
     mscore = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
+    rank = models.DecimalField(max_digits=5, 
+                                decimal_places=2)
     opr_percentile = models.DecimalField(max_digits=5,
                                 decimal_places=2)
     mscore_percentile = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
 
 class Matches(models.Model):
-    red1 = models.CharField(max_length=10,blank=False,unique=True)
+    number = models.DecimalField(max_digits=5, 
+                                decimal_places=2)
+    field = models.CharField(max_length=10,blank=False)
+    red1 = models.CharField(max_length=10,blank=False)
     red1_opr = models.DecimalField(max_digits=5,
                                 decimal_places=2)
     red1_mscore = models.DecimalField(max_digits=5, 
@@ -36,7 +41,8 @@ class Matches(models.Model):
     red1_mscore_percentile = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
 
-    red2 = models.CharField(max_length=10,blank=False,unique=True)
+    red2 = models.CharField(max_length=10,blank=False)
+
     red2_opr = models.DecimalField(max_digits=5,
                                 decimal_places=2)
     red2_mscore = models.DecimalField(max_digits=5, 
@@ -45,7 +51,7 @@ class Matches(models.Model):
                                 decimal_places=2)
     red2_mscore_percentile = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
-    blue1 = models.CharField(max_length=10,blank=False,unique=True)
+    blue1 = models.CharField(max_length=10,blank=False)
     blue1_opr = models.DecimalField(max_digits=5,
                                 decimal_places=2)
     blue1_mscore = models.DecimalField(max_digits=5, 
@@ -54,7 +60,7 @@ class Matches(models.Model):
                                 decimal_places=2)
     blue1_mscore_percentile = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
-    blue2 = models.CharField(max_length=10,blank=False,unique=True)
+    blue2 = models.CharField(max_length=10,blank=False)
     blue2_opr = models.DecimalField(max_digits=5,
                                 decimal_places=2)
     blue2_mscore = models.DecimalField(max_digits=5, 
@@ -62,4 +68,7 @@ class Matches(models.Model):
     blue2_opr_percentile = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
     blue2_mscore_percentile = models.DecimalField(max_digits=5, 
+                                decimal_places=2)
+    winner = models.CharField(max_length=1,blank=False)
+    chance = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
