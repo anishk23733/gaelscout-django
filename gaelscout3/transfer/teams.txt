@@ -1,0 +1,9 @@
+>>> import pandas as pd
+>>> import numpy as np
+>>> from teamindex.models import *
+>>> from scipy import stats
+>>> for num, opr, mscore in zip(df["Team Number"], df["OPR"], df["Max Score"]):
+...    opr_per = stats.percentileofscore(df["OPR"], opr)
+...    mscr_per = stats.percentileofscore(df["Max Score"], mscore)
+...    t = Teams(name=num, avg_opr=opr, avg_mscore=mscore, opr_percentile=opr_per, mscore_percentile=mscr_per)
+...    t.save()
