@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from teamindex.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from bokeh.plotting import figure, output_file, show 
-from bokeh.embed import components
+import random
+import datetime
+import time
 
 # Create your views here.
 def home(request):
@@ -19,8 +20,13 @@ def teamindex(request):
 
 def dashboard(request, team_number):
     team = Teams.objects.get(name=team_number)
-    return render(request, 'dashboard.html', {'team':team})
+    data = {
+        'team':team,
+    }
+    return render(request, 'dashboard.html', data)
 
 def divisionindex(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'divisionindex.html', {'teams': teams})
+
+ 
