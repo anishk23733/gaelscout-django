@@ -7,3 +7,7 @@
 ...    mscr_per = stats.percentileofscore(df["Max Score"], mscore)
 ...    t = Teams(name=num, avg_opr=opr, avg_mscore=mscore, opr_percentile=opr_per, mscore_percentile=mscr_per)
 ...    t.save()
+
+for team, opr, oprper, rank, mscore, mscoreper in zip(df["Team"], df["OPR"], df["OPR Percentile"], df["Rank"], df["Max Score"], df["Max Score Percentile"]):
+    t = ResearchTeams(name=team, opr=opr,mscore=mscore, rank=rank, opr_percentile=oprper,mscore_percentile=mscoreper)
+    t.save()

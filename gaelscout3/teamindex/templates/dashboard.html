@@ -7,7 +7,14 @@
   <body>
     <a href="{% url 'home'%}">Home</a>
     <a href="{% url 'teamindex'%}">Team Index</a>
-    <h2>{{team}}</h2>
-    
+    <a href="{% url 'divisionindex'%}">Division Index</a>
+
+    <h2>{{team.name}}</h2>
+    <p>Average OPR: {{team.avg_opr}}</p>
+    <p>OPR Percentile: {{team.opr_percentile}}%</p>
+    <p>Average max score: {{team.avg_mscore}}</p>
+    <p>Max score percentile: {{team.mscore_percentile}}%</p>
+
   </body>
+
 </html>
