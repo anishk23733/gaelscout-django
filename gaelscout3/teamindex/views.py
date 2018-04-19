@@ -19,7 +19,7 @@ def teamindex(request):
     return render(request, 'teamindex.html', {'teams': teams})
 
 def dashboard(request, team_number):
-    
+
     team = Teams.objects.get(name=team_number)
     data = {
         'team':team,
@@ -28,8 +28,4 @@ def dashboard(request, team_number):
 
 def divisionindex(request):
     teams = ResearchTeams.objects.all()
-<<<<<<< HEAD
     return render(request, 'divisionindex.html', {'teams': teams})
-=======
-    return render(request, 'divisionindex.html', {'teams': teams})
->>>>>>> 3e66a6e39dbab0cf41a632a788883bb5fc3af2b1
