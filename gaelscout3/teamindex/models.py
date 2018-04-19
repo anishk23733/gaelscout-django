@@ -31,6 +31,10 @@ class Matches(models.Model):
     number = models.DecimalField(max_digits=5, 
                                 decimal_places=2)
     field = models.CharField(max_length=10,blank=False)
+    day = models.CharField(max_length=10,blank=False)
+    time = models.CharField(max_length=10,blank=False)
+    phase = models.CharField(max_length=10,blank=False)
+    
     red1 = models.CharField(max_length=10,blank=False)
     red1_opr = models.DecimalField(max_digits=5,
                                 decimal_places=2)

@@ -2,10 +2,10 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from teamindex.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import TemplateView
+from django.contrib.auth.models import User
 
-import random
-import datetime
-import time
+import arrow
 
 # Create your views here.
 def home(request):
@@ -19,6 +19,7 @@ def teamindex(request):
     return render(request, 'teamindex.html', {'teams': teams})
 
 def dashboard(request, team_number):
+    
     team = Teams.objects.get(name=team_number)
     data = {
         'team':team,
@@ -28,5 +29,3 @@ def dashboard(request, team_number):
 def divisionindex(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'divisionindex.html', {'teams': teams})
-
- 
