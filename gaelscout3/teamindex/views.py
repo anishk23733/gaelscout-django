@@ -29,3 +29,7 @@ def dashboard(request, team_number):
 def divisionindex(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'divisionindex.html', {'teams': teams})
+def matches(request):
+    matches = Matches.objects.all()
+    teams = Teams.objects.all()
+    return render(request, 'matches.html', {'matches': matches, 'teams':teams})

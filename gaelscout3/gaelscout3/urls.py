@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('divisionindex/', views.divisionindex, name='divisionindex'),
+    path('matches/', views.matches, name='matches'),
     path('teamindex/', views.teamindex, name='teamindex'),
     path('', views.home, name='home'),
     path('<str:team_number>/dashboard/', views.dashboard, name='dashboard'),

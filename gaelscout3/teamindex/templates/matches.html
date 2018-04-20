@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <a href="{% url 'home'%}">Home</a>
+        <a href="{% url 'teamindex'%}">Team Index</a>
+        <a href="{% url 'divisionindex'%}">Division Index</a>
+        <h1>Match Predictions</h1>
+        <table>
+            <tr>
+                <th>Match Number</th>
+                <th>Field</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Red 1</th>
+                <th>Red 1 OPR</th>
+                <th>Red 1 Max Score</th>
+                <th>Red 2</th>
+                <th>Red 2 OPR</th>
+                <th>Red 2 Max Score</th>
+                <th>Blue 1</th>
+                <th>Blue 1 OPR</th>
+                <th>Blue 1 Max Score</th>
+                <th>Blue 2</th>
+                <th>Blue 2 OPR</th>
+                <th>Blue 2 Max Score</th>
+                <th>Chance</th>
+            </tr>
+            {% for match in matches %}
+            <tr >
+                <td>{{ match.number }}</td>
+                <td>{{ match.field }}</td>
+                <td>{{ match.day }}</td>
+                <td>{{ match.time }} {{ match.phase }}</td>
+                <td><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
+                <td>{{ match.red1_opr }}</td>
+                <td>{{ match.red1_mscore }}</td>
+                <td> <a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
+                <td>{{ match.red2_opr }}</td>
+                <td>{{ match.red2_mscore }}</td>
+                <td><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
+                <td>{{ match.blue1_opr }}</td>
+                <td>{{ match.blue1_mscore }}</td>
+                <td><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
+                <td>{{ match.blue2_opr }}</td>
+                <td>{{ match.blue2_mscore }}</td>
+                <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
+            </tr>
+                {% endfor %}
+        </table>
+    </body>
+</html>
