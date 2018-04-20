@@ -26,7 +26,8 @@ class ResearchTeams(models.Model):
                                 decimal_places=2)
     mscore_percentile = models.DecimalField(max_digits=5,
                                 decimal_places=2)
-
+    w = models.IntegerField()
+    l = models.IntegerField()
 class Matches(models.Model):
     number = models.CharField(max_length=10,blank=False)
     field = models.CharField(max_length=10,blank=False)

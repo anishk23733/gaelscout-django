@@ -24,11 +24,44 @@ def dashboard(request, team_number):
     data = {
         'team':team,
     }
+    wins = 0
+    losses = 0
+    matchesr1 = Matches.objects.filter(red1=team_number)
+    for i in matchesr1:
+        if i.winner == "R":
+            wins+=1
+        else:
+            losses+=1
+    matchesr2 = Matches.objects.filter(red2=team_number)
+    for i in matchesr2:
+        if i.winner == "R":
+            wins+=1
+        else:
+            losses+=1
+    matchesb1 = Matches.objects.filter(blue1=team_number)
+    for i in matchesb1:
+        if i.winner == "B":
+            wins+=1
+        else:
+            losses+=1
+    matchesb2 = Matches.objects.filter(blue2=team_number)
+    for i in matchesb2:
+        if i.winner == "B":
+            wins+=1
+        else:
+            losses+=1
+    try:
+        t = ResearchTeams.objects.get(name=team_number)
+        data['matches'] = matchesr1, matchesr2, matchesb1, matchesb2
+        data['research'] = t
+    except:
+        pass # team is not in research division
     return render(request, 'dashboard.html', data)
 
 def divisionindex(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'divisionindex.html', {'teams': teams})
+
 def matches(request):
     matches = Matches.objects.all()
     teams = Teams.objects.all()

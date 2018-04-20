@@ -1,1 +1,0 @@
-web: gunicorn gaelscout3.gaelscout3.wsgi
