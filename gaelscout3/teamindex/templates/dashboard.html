@@ -11,7 +11,7 @@
       console.log(ranks);
       console.log(mscores);
     </script>
-  
+
   </head>
   <body>
     <a href="{% url 'home'%}">Home</a>
@@ -27,8 +27,8 @@
     <p>OPR Percentile: {{team.opr_percentile}}%</p>
     <p>Average max score: {{team.avg_mscore}}</p>
     <p>Max score percentile: {{team.mscore_percentile}}%</p>
-    
-    
+
+
     {% if matches %}
     <h3>Match Schedule</h3>
     <table>
@@ -58,7 +58,7 @@
             <td>{{ match.field }}</td>
             <td>{{ match.day }}</td>
             <td>{{ match.time }} {{ match.phase }}</td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td> 
+            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
             <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_opr }}</td>
             <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_mscore }}</td>
             <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
@@ -75,10 +75,72 @@
             {% endfor %}
             {% endfor %}
     </table>
-
-
     {% endif %}
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
+    <canvas id="oprBar" width="300" height="300"></canvas>
+    <script type="text/javascript">
+        oprs = {{ js_oprs }};
+        ranks = {{ js_ranks }};
+        mscores = {{ js_mscores }};
+        var ctx_opr_bar = document.getElementById("oprBar").getContext("2d");
+        var oprBar = new Chart(ctx_opr_bar, {
+        type: 'horizontalBar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange"],
+            datasets: [{
+                label: 'OPR',
+                data: oprs,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            barThickness: 2,
+            layout: {
+                padding: {
+                    left: 100,
+                    right: 100,
+                    top: 500,
+                    bottom: 500
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
   </body>
 
 </html>
