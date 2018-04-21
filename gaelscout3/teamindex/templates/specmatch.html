@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+<body>
+    <a href="{% url 'home'%}">Home</a>
+    <a href="{% url 'teamindex'%}">Team Index</a>
+    <a href="{% url 'divisionindex'%}">Division Index</a>
+    <a href="{% url 'matches'%}">Matches</a>
+    
+    
+    {% if matchnum %}
+    <h1>Match {{matchnum}}</h1>
+    <table>
+        <tr>
+            <th>Match Number</th>
+            <th>Field</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Red 1</th>
+            <th>Red 1 OPR</th>
+            <th>Red 1 Max Score</th>
+            <th>Red 2</th>
+            <th>Red 2 OPR</th>
+            <th>Red 2 Max Score</th>
+            <th>Blue 1</th>
+            <th>Blue 1 OPR</th>
+            <th>Blue 1 Max Score</th>
+            <th>Blue 2</th>
+            <th>Blue 2 OPR</th>
+            <th>Blue 2 Max Score</th>
+            <th>Chance</th>
+        </tr>
+        <tr>
+            <td><a href="{% url 'specmatch' match.number %}">{{ match.number }}</a></td>
+            <td>{{ match.field }}</td>
+            <td>{{ match.day }}</td>
+            <td>{{ match.time }} {{ match.phase }}</td>
+            <td><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
+            <td>{{ match.red1_opr }}</td>
+            <td>{{ match.red1_mscore }}</td>
+            <td> <a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
+            <td>{{ match.red2_opr }}</td>
+            <td>{{ match.red2_mscore }}</td>
+            <td><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
+            <td>{{ match.blue1_opr }}</td>
+            <td>{{ match.blue1_mscore }}</td>
+            <td><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
+            <td>{{ match.blue2_opr }}</td>
+            <td>{{ match.blue2_mscore }}</td>
+            <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
+        </tr>
+    </table>
+
+
+        <canvas id="radar-chart" width="400" height="300"></canvas>
+        <script>
+var ctx = document.getElementById("radar-chart");
+ctx.height = 200;
+new Chart(document.getElementById("radar-chart"), {
+    type: 'radar',
+    data: {
+      labels: ["{{red1.name}}", "{{red2.name}}", "{{blue1.name}}", "{{blue2.name}}"],
+      datasets: [
+        {
+          label: "OPR",
+          fill: true,
+          backgroundColor: "rgba(218, 68, 83, 0.25)",
+          borderColor: "rgba(218, 68, 83, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(218, 68, 83, 1)",
+          data: [{{red1.opr}},{{red2.opr}},{{blue1.opr}},{{blue2.opr}}]
+        }, {
+          label: "Max Score",
+          fill: true,
+          backgroundColor: "rgba(91, 134, 229, 0.25)",
+          borderColor: "rgba(91, 134, 229, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(91, 134, 229, 1)",
+          pointBorderColor: "#fff",
+          data: [{{red1.mscore}},{{red2.mscore}},{{blue1.mscore}},{{blue2.mscore}}]
+        }
+        , {
+          label: "Rank",
+          fill: true,
+          backgroundColor: "rgba(54, 209, 220, 0.25)",
+          borderColor: "rgba(54, 209, 220, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(54, 209, 220, 1)",
+          pointBorderColor: "#fff",
+          data: [{{red1.rank}},{{red2.rank}},{{blue1.rank}},{{blue2.rank}}]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Match Data for {{matchnum}}'
+      }
+    }
+});
+            </script>
+      {% else %}
+            <h1>Error loading match.</h1>
+            <h1><a href="{% url 'matches' %}">Return to match list.</a></h1>
+      {% endif %}
+</body>
+
+</html>

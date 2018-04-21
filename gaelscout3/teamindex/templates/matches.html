@@ -32,7 +32,7 @@
             </tr>
             {% for match in matches %}
             <tr >
-                <td>{{ match.number }}</td>
+                <td><a href="{% url 'specmatch' match.number %}">{{ match.number }}</a></td>
                 <td>{{ match.field }}</td>
                 <td>{{ match.day }}</td>
                 <td>{{ match.time }} {{ match.phase }}</td>
