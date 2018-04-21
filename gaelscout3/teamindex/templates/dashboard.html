@@ -7,9 +7,6 @@
       oprs = {{ js_oprs }};
       ranks = {{ js_ranks }};
       mscores = {{ js_mscores }};
-      console.log(oprs);
-      console.log(ranks);
-      console.log(mscores);
     </script>
 
   </head>
@@ -54,7 +51,7 @@
         {% for m in matches %}
         {% for match in m %}
         <tr >
-            <td>{{ match.number }}</td>
+                <td><a href="{% url 'specmatch' match.number %}">{{ match.number }}</a></td>
             <td>{{ match.field }}</td>
             <td>{{ match.day }}</td>
             <td>{{ match.time }} {{ match.phase }}</td>

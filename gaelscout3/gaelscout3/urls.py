@@ -22,7 +22,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
+    path('<str:match_number>/match/', views.specmatch, name='specmatch'),
     path('divisionindex/', views.divisionindex, name='divisionindex'),
+    path('researchview/', views.divisionindex, name='divisionindex'),
     path('matches/', views.matches, name='matches'),
     path('teamindex/', views.teamindex, name='teamindex'),
     path('', views.home, name='home'),

@@ -66,7 +66,31 @@ def divisionindex(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'divisionindex.html', {'teams': teams})
 
+def researchview(request):
+    teams = ResearchTeams.objects.all()
+    return render(request, 'researchbubble.html', {'teams': teams})
+
+
 def matches(request):
     matches = Matches.objects.all()
     teams = Teams.objects.all()
     return render(request, 'matches.html', {'matches': matches, 'teams':teams})
+
+def specmatch(request, match_number):
+    matches = Matches.objects.get(number=match_number)
+    try:
+        redteam1 = ResearchTeams.objects.get(name=matches.red1)
+        redteam2 = ResearchTeams.objects.get(name=matches.red2)
+        blueteam1 = ResearchTeams.objects.get(name=matches.blue1)
+        blueteam2 = ResearchTeams.objects.get(name=matches.blue2)
+    except:
+        return render(request, 'specmatch.html')
+    data = {
+        'matchnum' : match_number,
+        'match' : matches,
+        'red1' : redteam1,
+        'red2' : redteam2,
+        'blue1' : blueteam1,
+        'blue2' : blueteam2,
+    }
+    return render(request, 'specmatch.html', data)
