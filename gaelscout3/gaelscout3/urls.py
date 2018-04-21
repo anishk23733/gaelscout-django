@@ -18,6 +18,7 @@ from django.urls import path, include
 from teamindex import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
