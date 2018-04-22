@@ -2,13 +2,16 @@
 <html>
     <head>
         <title>Division Teams</title>
+        {% load static %}
+        <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+    
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         
     </head>
     <body>
-            <nav class="blue darken-4">
+            <nav class="blue">
                     <div class="nav-wrapper">
                       <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
                       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -43,7 +46,18 @@
                 {% endfor %}
         </table>
     </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <footer class="blue page-footer">
+            <div class="footer-copyright">
+              <div class="container">
+              © 2018 Anish Kachinthaya
+    
+              <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
+              <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </footer>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
     </body>
 </html>

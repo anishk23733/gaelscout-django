@@ -2,7 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Team Index</title>
+    <title>{{team.name}}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+
     <script type="text/javascript">
       oprs = {{ js_oprs }};
       ranks = {{ js_ranks }};
@@ -12,7 +15,7 @@
     
   </head>
   <body>
-        <nav class="blue darken-4">
+        <nav class="blue">
                 <div class="nav-wrapper">
                   <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -81,12 +84,23 @@
             {% endfor %}
     </table>
     {% endif %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
     <div width="50px" height="20px">
-        <canvas id="oprBar" width="300" height="300"></canvas>
-    </div>
-
+            <canvas id="oprBar" width="300" height="200"></canvas>
+        </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
 </div>
+<footer class="blue page-footer">
+        <div class="footer-copyright">
+          <div class="container">
+          © 2018 Anish Kachinthaya
+
+          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
+          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </footer>
 
     <script type="text/javascript">
         oprs = {{ js_oprs }};
