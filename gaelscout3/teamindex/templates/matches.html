@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>{{ match.number }}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
     </head>
     <body>
-        <a href="{% url 'home'%}">Home</a>
-        <a href="{% url 'teamindex'%}">Team Index</a>
-        <a href="{% url 'divisionindex'%}">Division Index</a>
-        <a href="{% url 'matches'%}">Matches</a>
-
-        <h1>Match Predictions</h1>
+            <nav class="blue darken-4">
+                    <div class="nav-wrapper">
+                      <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
+                      <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'teamindex'%}">Team Index</a></li>
+                        <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
+                        <li><a href="{% url 'matches'%}">Matches</a></li>
+                      </ul>
+                    </div>
+            </nav>
+    <div class="container">
+    <div style="margin-left: 2.5%; margin-right: 2.5%">
+        <h1 >Match Predictions</h1>
         <table>
             <tr>
                 <th>Match Number</th>
@@ -36,21 +46,24 @@
                 <td>{{ match.field }}</td>
                 <td>{{ match.day }}</td>
                 <td>{{ match.time }} {{ match.phase }}</td>
-                <td><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
-                <td>{{ match.red1_opr }}</td>
-                <td>{{ match.red1_mscore }}</td>
-                <td> <a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
-                <td>{{ match.red2_opr }}</td>
-                <td>{{ match.red2_mscore }}</td>
-                <td><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
-                <td>{{ match.blue1_opr }}</td>
-                <td>{{ match.blue1_mscore }}</td>
-                <td><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
-                <td>{{ match.blue2_opr }}</td>
-                <td>{{ match.blue2_mscore }}</td>
+                <td {% if match.winner == "R" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
+                <td {% if match.winner == "R" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.red1_opr }}</td>
+                <td {% if match.winner == "R" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.red1_mscore }}</td>
+                <td {% if match.winner == "R" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}"> <a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
+                <td {% if match.winner == "R" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.red2_opr }}</td>
+                <td {% if match.winner == "R" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.red2_mscore }}</td>
+                <td {% if match.winner == "B" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}"><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
+                <td {% if match.winner == "B" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}"><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1_opr }}</td>
+                <td {% if match.winner == "B" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.blue1_mscore }}</td>
+                <td {% if match.winner == "B" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}"><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
+                <td {% if match.winner == "B" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.blue2_opr }}</td>
+                <td {% if match.winner == "B" %} class="#00e676 green accent-3" {% endif %}><a href="{% url 'specmatch' match.number %}"><a href="{% url 'dashboard' match.red1 %}">{{ match.blue2_mscore }}</td>
                 <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
             </tr>
                 {% endfor %}
         </table>
+    </div></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
     </body>
 </html>

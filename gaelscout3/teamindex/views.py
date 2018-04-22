@@ -68,7 +68,7 @@ def divisionindex(request):
 
 def researchview(request):
     teams = ResearchTeams.objects.all()
-    return render(request, 'researchbubble.html', {'teams': teams})
+    return render(request, 'ninuse/researchbubble.html', {'teams': teams})
 
 
 def matches(request):
