@@ -2,20 +2,36 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Team Index</title>
+    <title>{{team.name}}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+
     <script type="text/javascript">
       oprs = {{ js_oprs }};
       ranks = {{ js_ranks }};
       mscores = {{ js_mscores }};
     </script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-blue.min.css" />
+=======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    
+>>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
   </head>
   <body>
-    <a href="{% url 'home'%}">Home</a>
-    <a href="{% url 'teamindex'%}">Team Index</a>
-    <a href="{% url 'divisionindex'%}">Division Index</a>
-    <a href="{% url 'matches'%}">Matches</a>
+        <nav class="blue">
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'teamindex'%}">Team Index</a></li>
+                    <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
+                    <li><a href="{% url 'matches'%}">Matches</a></li>
+                  </ul>
+                </div>
+        </nav>
 
+    <div class="container">
     <h2>{{team.name}}</h2>
     {% if research%}
     <p>W-L Prediction: {{research.w}}—{{research.l}}</p>
@@ -24,7 +40,6 @@
     <p>OPR Percentile: {{team.opr_percentile}}%</p>
     <p>Average max score: {{team.avg_mscore}}</p>
     <p>Max score percentile: {{team.mscore_percentile}}%</p>
-
 
     {% if matches %}
     <h3>Match Schedule</h3>
@@ -50,11 +65,12 @@
         </tr>
         {% for m in matches %}
         {% for match in m %}
-        <tr >
-                <td><a href="{% url 'specmatch' match.number %}">{{ match.number }}</a></td>
+        <tr>
+            <td><a href="{% url 'specmatch' match.number %}">{{ match.number }}</a></td>
             <td>{{ match.field }}</td>
             <td>{{ match.day }}</td>
             <td>{{ match.time }} {{ match.phase }}</td>
+<<<<<<< HEAD
             <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
             <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red1_opr }}</td>
             <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red1_mscore }}</td>
@@ -68,15 +84,49 @@
             <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue2_opr }}</td>
             <td{% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue2_mscore }}</td>
             <td {% if match.winner == "B" %} style="background-color: rgb(33, 150, 243); color: #ffffff;" {% elif match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.chance }}%</td>
+=======
+            <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
+            <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_opr }}</td>
+            <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_mscore }}</td>
+            <td {% if  match.red2 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
+            <td {% if  match.red2 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red2_opr }}</td>
+            <td {% if  match.red2 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red2_mscore }}</td>
+            <td {% if  match.blue1 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
+            <td {% if  match.blue1 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue1_opr }}</td>
+            <td {% if  match.blue1 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue1_mscore }}</td>
+            <td {% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
+            <td {% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_opr }}</td>
+            <td{% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_mscore }}</td>
+            <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
+>>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
         </tr>
             {% endfor %}
             {% endfor %}
     </table>
     {% endif %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
     <div width="50px" height="20px">
+<<<<<<< HEAD
         <canvas id="oprBar" width="10px" height="5px"></canvas>
     </div>
+=======
+            <canvas id="oprBar" width="300" height="200"></canvas>
+        </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
+</div>
+<footer class="blue page-footer">
+        <div class="footer-copyright">
+          <div class="container">
+          © 2018 Anish Kachinthaya
+
+          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
+          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </footer>
+
+>>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
     <script type="text/javascript">
         oprs = {{ js_oprs }};
         ranks = {{ js_ranks }};
@@ -168,6 +218,7 @@
         }
     });
     </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
   </body>
 

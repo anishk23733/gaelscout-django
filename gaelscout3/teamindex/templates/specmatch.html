@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-blue.min.css" />
 </head>
@@ -11,7 +12,32 @@
     <a href="{% url 'matches'%}">Matches</a>
 
 
+=======
+  <title>{{matchnum}}</title>
+  {% load static %}
+  <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    
+</head>
+<body>
+    <nav class="blue">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'teamindex'%}">Team Index</a></li>
+            <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
+            <li><a href="{% url 'matches'%}">Matches</a></li>
+          </ul>
+        </div>
+</nav>
+
+    
+>>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
     {% if matchnum %}
+    <div class="container">
     <h1>Match {{matchnum}}</h1>
     <table class="mdl-data-table mdl-js-data-table">
         <tr>
@@ -55,6 +81,7 @@
     </table>
 
 
+<<<<<<< HEAD
         <canvas id="radar-chart" width="400" height="300"></canvas>
         <script>
         var ctx = document.getElementById("radar-chart");
@@ -101,11 +128,73 @@
               }
             }
         });
+=======
+        <canvas id="radar-chart" height="100%"></canvas></div><br>
+        <footer class="blue page-footer">
+            <div class="footer-copyright">
+              <div class="container">
+              © 2018 Anish Kachinthaya
+    
+              <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
+              <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </footer>
+            <script>
+var ctx = document.getElementById("radar-chart");
+ctx.height = 200;
+new Chart(document.getElementById("radar-chart"), {
+    type: 'radar',
+    data: {
+      labels: ["{{red1.name}}", "{{red2.name}}", "{{blue1.name}}", "{{blue2.name}}"],
+      datasets: [
+        {
+          label: "OPR",
+          fill: true,
+          backgroundColor: "rgba(218, 68, 83, 0.25)",
+          borderColor: "rgba(218, 68, 83, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(218, 68, 83, 1)",
+          data: [{{red1.opr}},{{red2.opr}},{{blue1.opr}},{{blue2.opr}}]
+        }, {
+          label: "Max Score",
+          fill: true,
+          backgroundColor: "rgba(91, 134, 229, 0.25)",
+          borderColor: "rgba(91, 134, 229, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(91, 134, 229, 1)",
+          pointBorderColor: "#fff",
+          data: [{{red1.mscore}},{{red2.mscore}},{{blue1.mscore}},{{blue2.mscore}}]
+        }
+        , {
+          label: "Rank",
+          fill: true,
+          backgroundColor: "rgba(54, 209, 220, 0.25)",
+          borderColor: "rgba(54, 209, 220, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(54, 209, 220, 1)",
+          pointBorderColor: "#fff",
+          data: [{{red1.rank}},{{red2.rank}},{{blue1.rank}},{{blue2.rank}}]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Match Data for {{matchnum}}'
+      }
+    }
+});
+>>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
             </script>
       {% else %}
             <h1>Error loading match.</h1>
             <h1><a href="{% url 'matches' %}">Return to match list.</a></h1>
       {% endif %}
+
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
 </body>
 
 </html>
