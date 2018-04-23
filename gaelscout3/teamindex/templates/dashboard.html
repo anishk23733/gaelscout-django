@@ -8,7 +8,7 @@
       ranks = {{ js_ranks }};
       mscores = {{ js_mscores }};
     </script>
-
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-blue.min.css" />
   </head>
   <body>
     <a href="{% url 'home'%}">Home</a>
@@ -28,25 +28,25 @@
 
     {% if matches %}
     <h3>Match Schedule</h3>
-    <table>
+    <table class="mdl-data-table mdl-js-data-table">
         <tr>
-            <th>Match Number</th>
-            <th>Field</th>
-            <th>Day</th>
-            <th>Time</th>
-            <th>Red 1</th>
-            <th>Red 1 OPR</th>
-            <th>Red 1 Max Score</th>
-            <th>Red 2</th>
-            <th>Red 2 OPR</th>
-            <th>Red 2 Max Score</th>
-            <th>Blue 1</th>
-            <th>Blue 1 OPR</th>
-            <th>Blue 1 Max Score</th>
-            <th>Blue 2</th>
-            <th>Blue 2 OPR</th>
-            <th>Blue 2 Max Score</th>
-            <th>Chance</th>
+            <th class="mdl-data-table__cell--non-numeric">Match Number</th>
+            <th class="mdl-data-table__cell--non-numeric">Field</th>
+            <th class="mdl-data-table__cell--non-numeric">Day</th>
+            <th class="mdl-data-table__cell--non-numeric">Time</th>
+            <th class="mdl-data-table__cell--non-numeric">Red 1</th>
+            <th class="mdl-data-table__cell--non-numeric">Red 1 OPR</th>
+            <th class="mdl-data-table__cell--non-numeric">Red 1 Max Score</th>
+            <th class="mdl-data-table__cell--non-numeric">Red 2</th>
+            <th class="mdl-data-table__cell--non-numeric">Red 2 OPR</th>
+            <th class="mdl-data-table__cell--non-numeric">Red 2 Max Score</th>
+            <th class="mdl-data-table__cell--non-numeric">Blue 1</th>
+            <th class="mdl-data-table__cell--non-numeric">Blue 1 OPR</th>
+            <th class="mdl-data-table__cell--non-numeric">Blue 1 Max Score</th>
+            <th class="mdl-data-table__cell--non-numeric">Blue 2</th>
+            <th class="mdl-data-table__cell--non-numeric">Blue 2 OPR</th>
+            <th class="mdl-data-table__cell--non-numeric">Blue 2 Max Score</th>
+            <th class="mdl-data-table__cell--non-numeric">Chance</th>
         </tr>
         {% for m in matches %}
         {% for match in m %}
@@ -55,19 +55,19 @@
             <td>{{ match.field }}</td>
             <td>{{ match.day }}</td>
             <td>{{ match.time }} {{ match.phase }}</td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_opr }}</td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_mscore }}</td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red2_opr }}</td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red2_mscore }}</td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue1_opr }}</td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue1_mscore }}</td>
-            <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
-            <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_opr }}</td>
-            <td{% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_mscore }}</td>
-            <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
+            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
+            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red1_opr }}</td>
+            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red1_mscore }}</td>
+            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
+            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red2_opr }}</td>
+            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red2_mscore }}</td>
+            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
+            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue1_opr }}</td>
+            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue1_mscore }}</td>
+            <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
+            <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue2_opr }}</td>
+            <td{% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue2_mscore }}</td>
+            <td {% if match.winner == "B" %} style="background-color: rgb(33, 150, 243); color: #ffffff;" {% elif match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.chance }}%</td>
         </tr>
             {% endfor %}
             {% endfor %}
@@ -75,7 +75,7 @@
     {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
     <div width="50px" height="20px">
-        <canvas id="oprBar" width="300" height="300"></canvas>
+        <canvas id="oprBar" width="10px" height="5px"></canvas>
     </div>
     <script type="text/javascript">
         oprs = {{ js_oprs }};
@@ -135,6 +135,9 @@
             }]
         },
         options: {
+            legend: {
+                display: false
+            },
             title: {
                 display: true,
                 position: "top",
@@ -145,16 +148,13 @@
 
             layout: {
                 padding: {
-                    left: 100,
-                    right: 100,
-                    top: 400,
-                    bottom: 400
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
                 }
             },
             scales: {
-                scaleLabel: {
-                    scaleTitle: "OPR",
-                },
                 yAxes: [{
                     ticks: {
                         beginAtZero:true,
