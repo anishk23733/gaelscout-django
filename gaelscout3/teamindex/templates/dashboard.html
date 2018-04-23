@@ -11,12 +11,8 @@
       ranks = {{ js_ranks }};
       mscores = {{ js_mscores }};
     </script>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-blue.min.css" />
-=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    
->>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
+
   </head>
   <body>
         <nav class="blue">
@@ -70,21 +66,6 @@
             <td>{{ match.field }}</td>
             <td>{{ match.day }}</td>
             <td>{{ match.time }} {{ match.phase }}</td>
-<<<<<<< HEAD
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red1_opr }}</td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red1_mscore }}</td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red2_opr }}</td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} style="background-color: #00EA57" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.red2_mscore }}</td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue1_opr }}</td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue1_mscore }}</td>
-            <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
-            <td {% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue2_opr }}</td>
-            <td{% if  match.blue2 == team.name and match.winner == "B" %} style="background-color: #00EA57" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.blue2_mscore }}</td>
-            <td {% if match.winner == "B" %} style="background-color: rgb(33, 150, 243); color: #ffffff;" {% elif match.winner == "R" %} style="background-color: rgb(244, 67, 54); color: #ffffff;"{% endif %}>{{ match.chance }}%</td>
-=======
             <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
             <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_opr }}</td>
             <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_mscore }}</td>
@@ -98,21 +79,22 @@
             <td {% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_opr }}</td>
             <td{% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_mscore }}</td>
             <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
->>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
         </tr>
             {% endfor %}
             {% endfor %}
     </table>
     {% endif %}
     <div width="50px" height="20px">
-<<<<<<< HEAD
-        <canvas id="oprBar" width="10px" height="5px"></canvas>
-    </div>
-=======
             <canvas id="oprBar" width="300" height="200"></canvas>
-        </div>
-    
-    
+    </div>
+    <div width="50px" height="20px">
+            <canvas id="rankBar" width="300" height="200"></canvas>
+    </div>
+    <div width="50px" height="20px">
+            <canvas id="matchBar" width="300" height="200"></canvas>
+    </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
 </div>
 <footer class="blue page-footer">
@@ -126,7 +108,6 @@
         </div>
       </footer>
 
->>>>>>> 3ca8e9e2658ce3bf7ad77293a1d258956f821c1d
     <script type="text/javascript">
         oprs = {{ js_oprs }};
         ranks = {{ js_ranks }};
@@ -153,23 +134,23 @@
         function dataIndex(data){
             var stringDataList = [];
             for(var i = 0; i < data.length; i++) {
-                stringifiedData = i.toString();
+                stringifiedData = "Match " + i.toString();
                 stringDataList.push(stringifiedData);
             }
             return stringDataList;
         }
-        var oprMax = Math.max(...oprs) + 10;
-        var oprMin = Math.min(...oprs) - 10;
-        console.log(oprMin);
-        console.log(oprMax);
+        var oprMin = Math.min(...oprs) - 5;
+        var rankMin = Math.min(...ranks);
         var oprColors = randomColor(oprs);
+        var rankColors = randomColor(ranks);
+        var rankBars = rankColors[0];
+        var rankBorders = rankColors[1];
         var oprBorders = oprColors[1];
         var oprBars = oprColors[0];
         var oprDataList = dataIndex(oprs);
-        console.log(oprBars);
-        console.log(oprBorders);
-        console.log(oprDataList);
+        var rankDataList = dataIndex(ranks);
         var ctx_opr_bar = document.getElementById("oprBar").getContext("2d");
+        var ctx_rank_bar = document.getElementById("rankBar").getContext("2d");
         var oprBar = new Chart(ctx_opr_bar, {
         type: 'bar',
         barPercentage: 1,
@@ -208,8 +189,53 @@
                 yAxes: [{
                     ticks: {
                         beginAtZero:true,
-                        max: oprMax,
+                        steps: 10,
+                        stepValue: 5,
                         min: oprMin,
+                    }
+                }]
+            }
+        }
+    });
+        var oprBar = new Chart(ctx_rank_bar, {
+        type: 'bar',
+        barPercentage: 1,
+        categoryPercentage: 1,
+        data: {
+            labels: rankDataList,
+            datasets: [{
+                label: 'Ranks',
+                data: ranks,
+                backgroundColor: rankBars,
+                borderColor: rankBorders,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                position: "top",
+                fontSize: 36,
+                fontStyle: "bold",
+                text: "Ranks"
+            },
+
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true,
+                        min: rankMin,
                         steps: 10,
                         stepValue: 5
                     }
