@@ -10,6 +10,9 @@
       oprs = {{ js_oprs }};
       ranks = {{ js_ranks }};
       mscores = {{ js_mscores }};
+      console.log(oprs);
+      console.log(ranks);
+      console.log(mscores);
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
@@ -141,16 +144,22 @@
         }
         var oprMin = Math.min(...oprs) - 5;
         var rankMin = Math.min(...ranks);
+        var matchMin = Math.min(...mscores);
         var oprColors = randomColor(oprs);
         var rankColors = randomColor(ranks);
+        var matchColors = randomColor(mscores);
+        var matchBars = matchColors[0];
+        var matchBorders = matchColors[1];
         var rankBars = rankColors[0];
         var rankBorders = rankColors[1];
         var oprBorders = oprColors[1];
         var oprBars = oprColors[0];
         var oprDataList = dataIndex(oprs);
         var rankDataList = dataIndex(ranks);
+        var matchDataList = dataIndex(mscores);
         var ctx_opr_bar = document.getElementById("oprBar").getContext("2d");
         var ctx_rank_bar = document.getElementById("rankBar").getContext("2d");
+        var ctx_match_bar = document.getElementById("matchBar").getContext("2d");
         var oprBar = new Chart(ctx_opr_bar, {
         type: 'bar',
         barPercentage: 1,
@@ -236,6 +245,52 @@
                     ticks: {
                         beginAtZero:true,
                         min: rankMin,
+                        steps: 10,
+                        stepValue: 5
+                    }
+                }]
+            }
+        }
+    });
+        var oprBar = new Chart(ctx_match_bar, {
+        type: 'bar',
+        barPercentage: 1,
+        categoryPercentage: 1,
+        data: {
+            labels: matchDataList,
+            datasets: [{
+                label: 'Match Scores',
+                data: mscores,
+                backgroundColor: matchBars,
+                borderColor: matchBorders,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                position: "top",
+                fontSize: 36,
+                fontStyle: "bold",
+                text: "Match Scores"
+            },
+
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true,
+                        min: matchMin,
                         steps: 10,
                         stepValue: 5
                     }
