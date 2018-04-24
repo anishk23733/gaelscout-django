@@ -17,6 +17,9 @@ def teamindex(request):
     paginator = Paginator(teams, 50) # Show 25 contacts per page
     page = request.GET.get('page')
     teams = paginator.get_page(page)
+    query = request.GET.get("q")
+    if query:
+        teams = Teams.objects.filter(name__icontains=query)
     return render(request, 'teamindex.html', {'teams': teams})
 
 def dashboard(request, team_number):
@@ -64,6 +67,9 @@ def dashboard(request, team_number):
 
 def divisionindex(request):
     teams = ResearchTeams.objects.all()
+    query = request.GET.get("q")
+    if query:
+        teams = ResearchTeams.objects.filter(name__icontains=query)
     return render(request, 'divisionindex.html', {'teams': teams})
 
 def researchview(request):
