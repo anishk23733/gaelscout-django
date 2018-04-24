@@ -39,13 +39,13 @@
             <li class="waves-effect"><a href="">Page {{ teams.number }} of {{ teams.paginator.num_pages }}.</a></li>
 
             <span class="current">
-                
+
             </span>
 
             {% if teams.has_next %}
-                <li class="waves-effect"><a href="?page={{ teams.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>            
+                <li class="waves-effect"><a href="?page={{ teams.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
                 <li><a href="?page={{ teams.paginator.num_pages }}">Last</a></li>
-                
+
             {% endif %}
         </ul>
 
@@ -80,27 +80,27 @@
     <li class="waves-effect"><a href="">Page {{ teams.number }} of {{ teams.paginator.num_pages }}.</a></li>
 
     <span class="current">
-        
+
     </span>
 
     {% if teams.has_next %}
-        <li class="waves-effect"><a href="?page={{ teams.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>            
+        <li class="waves-effect"><a href="?page={{ teams.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
         <li><a href="?page={{ teams.paginator.num_pages }}">Last</a></li>
-        
+
     {% endif %}
 </ul>
 </div>
 <footer class="blue page-footer">
-        <div class="footer-copyright">
-          <div class="container">
-          © 2018 Anish Kachinthaya
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Anish Kachinthaya & Rishi Pappu
 
-          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
-          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
-          </div>
-        </div>
-      </footer>
-      
+      <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
+      <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 

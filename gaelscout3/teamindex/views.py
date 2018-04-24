@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 import json
 from raschietto import Matcher, Raschietto
 import arrow
-
+import pandas as pd
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
@@ -69,6 +69,23 @@ def divisionindex(request):
 def researchview(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'ninuse/researchbubble.html', {'teams': teams})
+
+def sri(request):
+    teams = ResearchTeams.objects.all()
+    df = pd.read_pickle("static/data/sridata.pkl")
+    nums = list(df["Team Number"])
+    js_nums = json.dumps(nums)
+    oprs = list(df["OPR"])
+    js_oprs = json.dumps(oprs)
+    mscores = list(df["Max Score"])
+    js_mscores = json.dumps(mscores)
+
+    data = {
+        'nums' : js_nums,
+        'mscores' : js_mscores,
+        'oprs' : js_oprs,
+    }
+    return render(request, 'sri.html', data)
 
 
 def matches(request):

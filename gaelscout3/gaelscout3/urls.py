@@ -27,6 +27,7 @@ urlpatterns = [
     path('researchview/', views.divisionindex, name='divisionindex'),
     path('matches/', views.matches, name='matches'),
     path('teamindex/', views.teamindex, name='teamindex'),
+    path('sri/', views.sri, name='sri'),
     path('', views.home, name='home'),
     path('<str:team_number>/dashboard/', views.dashboard, name='dashboard'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

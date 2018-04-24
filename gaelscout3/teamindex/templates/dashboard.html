@@ -101,15 +101,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
 </div>
 <footer class="blue page-footer">
-        <div class="footer-copyright">
-          <div class="container">
-          © 2018 Anish Kachinthaya
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Anish Kachinthaya & Rishi Pappu
 
-          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
-          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
-          </div>
-        </div>
-      </footer>
+      <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
+      <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
 
     <script type="text/javascript">
         oprs = {{ js_oprs }};
@@ -137,7 +137,7 @@
         function dataIndex(data){
             var stringDataList = [];
             for(var i = 0; i < data.length; i++) {
-                stringifiedData = "Match " + i.toString();
+                stringifiedData = "Tournament " + i.toString();
                 stringDataList.push(stringifiedData);
             }
             return stringDataList;
@@ -175,6 +175,9 @@
             }]
         },
         options: {
+            tooltips: {
+                displayColors: false
+            },
             legend: {
                 display: false
             },
@@ -221,6 +224,9 @@
             }]
         },
         options: {
+            tooltips: {
+                displayColors: false
+            },
             legend: {
                 display: false
             },
@@ -259,7 +265,7 @@
         data: {
             labels: matchDataList,
             datasets: [{
-                label: 'Match Scores',
+                label: 'Tournament Scores',
                 data: mscores,
                 backgroundColor: matchBars,
                 borderColor: matchBorders,
@@ -267,6 +273,9 @@
             }]
         },
         options: {
+            tooltips: {
+                displayColors: false
+            },
             legend: {
                 display: false
             },
@@ -275,7 +284,7 @@
                 position: "top",
                 fontSize: 36,
                 fontStyle: "bold",
-                text: "Match Scores"
+                text: "Tournament Scores"
             },
 
             layout: {
