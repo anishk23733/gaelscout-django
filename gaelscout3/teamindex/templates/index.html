@@ -11,10 +11,32 @@
 
 
 <style>
+    .app {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+        background: rgba(20, 20, 20, 0.3);
+    }
+
+    * {
+        color: #fff;
+    }
     .bg {
       {% load static %}
-      background: url('{% static "img/bg1.jpg" %}');
+      background-image: url('{% static "img/wallpaper.jpg" %}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      z-index: -1;
     }
+
     .demo-layout-transparent .mdl-layout__header,
     .demo-layout-transparent .mdl-layout__drawer-button {
       /* This background is dark, so we set text to white. Use 87% black instead if
@@ -24,7 +46,9 @@
     </style>
 
   </head>
-  <body>
+  <body class="app">
+      <div class="bg">
+      </div>
       <nav class="blue">
           <div class="nav-wrapper">
             <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
@@ -36,12 +60,14 @@
               <li><a href="{% url 'sri'%}">SRI</a></li>
             </ul>
           </div>
-  </nav>
-
-  <div class="container">
-    <h1>GaelScout</h1>
-    <p>The ultimate VEX data visualization tool.</p>
+      </nav>
+  <div class="content-wrapper">
+      <div class="container">
+        <h1>GaelScout</h1>
+        <p>The ultimate VEX data visualization tool.</p>
+      </div>
   </div>
+
 
   <footer class="blue page-footer">
       <div class="footer-copyright">
