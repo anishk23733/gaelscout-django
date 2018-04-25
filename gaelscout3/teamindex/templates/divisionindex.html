@@ -1,103 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-<<<<<<< HEAD
-<head>
-	<title>Division Teams</title>
-</head>
-
-<body>
-	{% load static %}
-	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">{% load static %}
-	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
-
-    <nav class="blue">
-		<div class="nav-wrapper">
-			<a class="brand-logo" href="#" style="margin-left: 2.5%">GaelScout</a>
-
-			<ul class="right hide-on-med-and-down" id="nav-mobile">
-				<li>
-					<a href="{% url 'home' %}">Home</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'teamindex' %}">Team Index</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'divisionindex'%}">Division Index</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'matches'%}">Matches</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'sri'%}">SRI</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-
-
-	<div class="container">
-		<h1>Research Division Team Index</h1>
-		{% for team in teams %} {% endfor %}
-
-		<table>
-			<tr>
-				<th>Team Number</th>
-
-				<th>OPR</th>
-
-				<th>OPR Percentile</th>
-
-				<th>Max Score</th>
-
-				<th>Max Score Percentile</th>
-
-				<th>Average Rank</th>
-			</tr>
-
-
-			<tr>
-				<td>
-					<a href="{%%20url%20'dashboard'%20team.name%20%}">{{ team.name }}</a>
-				</td>
-
-				<td>{{ team.opr }}</td>
-
-				<td>{{ team.opr_percentile }}%</td>
-
-				<td>{{ team.mscore }}</td>
-
-				<td>{{ team.mscore_percentile }}%</td>
-
-				<td>{{ team.rank }}</td>
-			</tr>
-		</table>
-	</div>
-
-
-	<footer class="blue page-footer">
-		<div class="footer-copyright">
-			<div class="container">
-				© 2018 Anish Kachinthaya & Rishi Pappu <a class="grey-text text-lighten-4 right" href="http://www.dhsrobotics.com/" style="margin-right: 1%" target="_blank">Gael Force Robotics</a> <a class="grey-text text-lighten-4 right" href="http://www.github.com/anishk23733" style="margin-right: 1%" target="_blank">GitHub</a>
-			</div>
-		</div>
-	</footer>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js">
-	</script>
-</body>
-=======
     <head>
         <title>Division Teams</title>
         {% load static %}
@@ -122,7 +25,7 @@
             </div>
         </nav>
         <div class="container">
-            
+
         <h1>Research Division Team Index</h1>
         <form method="GET" autocomplete="off">
             <input class="" type="text" name='q' placeholder="Search Teams"/>
@@ -164,5 +67,4 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
     </body>
->>>>>>> 4612efd9e32a6ba7074983284019a7629e74dfef
 </html>
