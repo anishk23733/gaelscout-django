@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rankings</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  </head>
+  <body>
+    {% include "html/nav.html" %}
+    <div class="container">
+    <h2>Predicted Rankings</h2>
+    <table class="highlight responsive-table">
+            <tr>
+                <th>Position</th>
+                <th>Team Number</th>
+                <th>Wins</th>
+                <th>Losses</th>
+            </tr>
+            {% for team, rank in teams %}
+            <tr>
+                <td>{{ rank }}</td>
+                <td><a href="{% url 'dashboard' team.name %}">{{ team.name }}</a></td>
+                <td>{{ team.w }}</td>
+                <td>{{ team.l }}</td>
+            </tr>
+                {% endfor %}
+    </table>
+
+</div>
+    {% include "html/footer.html" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+      
+    </body>
+</html>

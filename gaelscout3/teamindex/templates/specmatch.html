@@ -4,25 +4,13 @@
   <title>{{matchnum}}</title>
   {% load static %}
   <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href='{% static "main.css" %}'/>
+	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
 </head>
 <body>
-    <nav class="blue">
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'teamindex'%}">Team Index</a></li>
-            <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
-            <li><a href="{% url 'matches'%}">Matches</a></li>
-            <li><a href="{% url 'sri'%}">SRI</a></li>
-          </ul>
-        </div>
-    </nav>
+  {% include "html/nav.html" %}
 
 
     {% if matchnum %}
@@ -71,16 +59,8 @@
 
 
         <canvas id="radar-chart" height="100%"></canvas></div><br>
-        <footer class="blue page-footer">
-            <div class="footer-copyright">
-              <div class="container">
-              © 2018 Anish Kachinthaya & Rishi Pappu
+        {% include "html/footer.html" %}
 
-              <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
-              <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
-              </div>
-            </div>
-          </footer>
             <script>
 var ctx = document.getElementById("radar-chart");
 ctx.height = 200;

@@ -1,109 +1,67 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-	<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
     {% load static %}
-	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">{% load static %}
-	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Home</title>
-</head>
-
-<body class="app">
-	<style>
-	   .app {
-	       display: flex;
-	       min-height: 100vh;
-	       flex-direction: column;
-	   }
-
-	   .content-wrapper {
-	       flex: 1;
-	       background: rgba(20, 20, 20, 0.3);
-	   }
-
-	   * {
-	       color: #fff;
-	   }
-	   .bg {
-	     {% load static %}
-	     background-image: url('{% static "img/wallpaper.jpg" %}');
-	     background-size: cover;
-	     background-repeat: no-repeat;
-	     background-position: center;
-	     height: 100vh;
-	     width: 100vw;
-	     position: absolute;
-	     z-index: -1;
-	   }
-
-	   .demo-layout-transparent .mdl-layout__header,
-	   .demo-layout-transparent .mdl-layout__drawer-button {
-	     /* This background is dark, so we set text to white. Use 87% black instead if
-	        your background is light. */
-	     color: white;
-	   }
-	</style>
-
-	<div class="bg">
-	</div>
+    <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+    <link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
-    <nav class="blue">
-		<div class="nav-wrapper">
-			<a class="brand-logo" href="#" style="margin-left: 2.5%">GaelScout</a>
+<style>
+    .app {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
 
-			<ul class="right hide-on-med-and-down" id="nav-mobile">
-				<li>
-					<a href="{% url 'home' %}">Home</a>
-				</li>
+    .content-wrapper {
+        flex: 1;
+        background: rgba(20, 20, 20, 0.3);
+    }
+
+    * {
+        color: #fff;
+    }
+    .bg {
+      {% load static %}
+      background-image: url('{% static "img/wallpaper.jpg" %}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .demo-layout-transparent .mdl-layout__header,
+    .demo-layout-transparent .mdl-layout__drawer-button {
+      /* This background is dark, so we set text to white. Use 87% black instead if
+         your background is light. */
+      color: white;
+    }
+    </style>
+
+  </head>
+  <body class="app">
+      <div class="bg">
+      </div>
+      {% include "html/nav.html" %}
+      <div class="content-wrapper">
+      <div class="container">
+        <h1>GaelScout</h1>
+        <p>The ultimate VEX data visualization tool.</p>
+      </div>
+  </div>
 
 
-				<li>
-					<a href="{% url 'teamindex' %}">Team Index</a>
-				</li>
+  {% include "html/footer.html" %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
-
-				<li>
-					<a href="{% url 'divisionindex'%}">Division Index</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'matches'%}">Matches</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'sri'%}">SRI</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-
-
-	<div class="content-wrapper">
-		<div class="container">
-			<h1>GaelScout</h1>
-
-
-			<p>The ultimate VEX data visualization tool.</p>
-		</div>
-	</div>
-
-
-	<footer class="blue page-footer">
-		<div class="footer-copyright">
-			<div class="container">
-				© 2018 Anish Kachinthaya & Rishi Pappu <a class="grey-text text-lighten-4 right" href="http://www.dhsrobotics.com/" style="margin-right: 1%" target="_blank">Gael Force Robotics</a> <a class="grey-text text-lighten-4 right" href="http://www.github.com/anishk23733" style="margin-right: 1%" target="_blank">GitHub</a>
-			</div>
-		</div>
-	</footer>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js">
-	</script>
-</body>
+  </body>
 </html>
