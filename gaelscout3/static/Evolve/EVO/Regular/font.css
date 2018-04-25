@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'MADEEvolveSansEVO';
+  src: url('MADEEvolveSansEVO.eot');
+  src: url('MADEEvolveSansEVO.woff2') format('woff2'),
+       url('MADEEvolveSansEVO.woff') format('woff'),
+       url('MADEEvolveSansEVO.ttf') format('truetype'),
+       url('MADEEvolveSansEVO.svg#MADEEvolveSansEVO') format('svg'),
+       url('MADEEvolveSansEVO.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

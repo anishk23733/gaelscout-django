@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'MADEEvolveSans-Thin';
+  src: url('MADEEvolveSans-Thin.eot');
+  src: url('MADEEvolveSans-Thin.woff2') format('woff2'),
+       url('MADEEvolveSans-Thin.woff') format('woff'),
+       url('MADEEvolveSans-Thin.ttf') format('truetype'),
+       url('MADEEvolveSans-Thin.svg#MADEEvolveSans-Thin') format('svg'),
+       url('MADEEvolveSans-Thin.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

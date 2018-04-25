@@ -1,118 +1,194 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-    {% load static %}
-    <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script>
-        nms = {{nums|safe}};
-        op = {{oprs}};
-        mscr = {{mscores}};
-        console.log(nms);
-        console.log(op);
-        console.log(mscr);
-        </script>
-  </head>
-  <body>
-      <nav class="blue">
-          <div class="nav-wrapper">
-            <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'teamindex'%}">Team Index</a></li>
-              <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
-              <li><a href="{% url 'matches'%}">Matches</a></li>
-              <li><a href="{% url 'sri'%}">SRI</a></li>
-            </ul>
-          </div>
-      </nav>
+<head>
+	<meta charset="utf-8">
 
-  <div class="container">
-    <h1>Score Rating Index</h1>
-    <p>An index of all teams.</p>
-    <div width="50px" height="20px">
-            <canvas id="sriScatter" width="300" height="200"></canvas>
-    </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-  <script type="text/javascript">
-          nms = {{nums|safe}};
-          opr = {{oprs}};
-          mscr = {{mscores}};
-          console.log(mscr.length);
-          console.log(opr.length);
-          function generateXY(mscores, oprs){
-              var totalPointSet = [];
-              for(var i = 0; i < oprs.length; i++) {
-                  var pointObject = {
-                      x: opr[i],
-                      y: mscores[i]
-                  };
-                  totalPointSet.push(pointObject);
-              }
-              return totalPointSet;
-          }
-          var sriPoints = generateXY(mscr, opr);
-          var ctx_sri_scatter = document.getElementById("sriScatter").getContext("2d");
-          var sriScatter = new Chart(ctx_sri_scatter, {
-          type: 'scatter',
-          data: {
-              datasets: [{
-                  label: nms,
-                  data: sriPoints,
-                  borderColor: "rgba(0, 0, 0, 0)",
-                  backgroundColor: "rgba(0, 0, 0, 0)",
-                  pointBorderColor: "rgba(33, 150, 243, 1)",
-                  pointBackgroundColor: "rgba(33, 150, 243, 0.2)",
-                  pointBorderWidth: "1"
-            }]
-          },
-          options: {
-              legend: {
-                  display: false
-              },
-              title: {
-                  display: true,
-                  position: "top",
-                  fontSize: 36,
-                  fontStyle: "bold",
-                  text: "SRI"
-              },
-              layout: {
-                  padding: {
-                      left: 10,
-                      right: 10,
-                      top: 10,
-                      bottom: 10
-                  }
-              },
-              scales: {
-                  xAxes: [{
-                      max: 110
-                  }],
-                  yAxes: [{
-                      max: 210
-                  }]
-              }
-          }
-      });
-  </script>
-  <footer class="blue page-footer">
-      <div class="footer-copyright">
-        <div class="container">
-        © 2018 Anish Kachinthaya & Rishi Pappu
+	<title>Home</title>
+</head>
 
-        <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
-        <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
-        </div>
-      </div>
-    </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<body>
+	{% load static %}
+	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">{% load static %}
+	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+	</script>
+	<script>
+	       nms = {{nums|safe}};
+	       op = {{oprs}};
+	       mscr = {{mscores}};
+	       console.log(nms);
+	       console.log(op);
+	       console.log(mscr);
+	</script>
+
+	<nav class="blue">
+		<div class="nav-wrapper">
+			<a class="brand-logo" href="#" style="margin-left: 2.5%">GaelScout</a>
+
+			<ul class="right hide-on-med-and-down" id="nav-mobile">
+				<li>
+					<a href="{% url 'home' %}">Home</a>
+				</li>
 
 
-  </body>
+				<li>
+					<a href="{% url 'teamindex' %}">Team Index</a>
+				</li>
+
+
+				<li>
+					<a href="{% url 'divisionindex'%}">Division Index</a>
+				</li>
+
+
+				<li>
+					<a href="{% url 'matches'%}">Matches</a>
+				</li>
+
+
+				<li>
+					<a href="{% url 'sri'%}">SRI</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<h1>Score Rating Index</h1>
+
+
+		<p>An index of all teams.</p>
+		<label for="teamName">Team Name:</label> <input id="teamName" name="teamName" placeholder="5327B" type="text" value=""> <button class="waves-effect waves-light btn-small" id="button">Search</button>
+
+		<p id="orderedPair">OPR, Tournament Scores:</p>
+
+
+		<div height="20px" style="margin-bottom: 2em;" width="50px">
+			<canvas height="200" id="sriScatter" width="300">
+			</canvas>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js">
+	</script>
+	<script type="text/javascript">
+	       $("button").on("click", function(){
+	           var teamNameElement = document.getElementById("teamName");
+	           var teamName = teamNameElement.value;
+	           var orderedPair = document.getElementById("orderedPair");
+	           for(var i = 0; i < nms.length; i++){
+	               if (teamName == nms[i]) {
+	                   var x = opr[i].toFixed(2);
+	                   var y = mscr[i].toFixed(2);
+	                   var coordinate = "OPR, Tournament Scores : (" + x + ", " + y + ")";
+	                   orderedPair.innerHTML = coordinate;
+	               }
+	           }
+	       });
+
+	         nms = {{nums|safe}};
+	         opr = {{oprs}};
+	         mscr = {{mscores}};
+	         console.log(mscr.length);
+	         console.log(opr.length);
+	         function generateXY(mscores, oprs){
+	             var totalPointSet = [];
+	             for(var i = 0; i < oprs.length; i++) {
+	                 var pointObject = {
+	                     x: opr[i].toFixed(2),
+	                     y: mscores[i].toFixed(2)
+	                 };
+	                 totalPointSet.push(pointObject);
+	             }
+	             return totalPointSet;
+	         }
+	         var sriPoints = generateXY(mscr, opr);
+	         var ctx_sri_scatter = document.getElementById("sriScatter").getContext("2d");
+	         var sriScatter = new Chart(ctx_sri_scatter, {
+	         type: 'scatter',
+	         data: {
+	             labels: nms,
+	             datasets: [{
+	                 data: sriPoints,
+	                 borderColor: "rgba(0, 0, 0, 0)",
+	                 backgroundColor: "rgba(0, 0, 0, 0)",
+	                 pointBorderColor: "rgba(33, 150, 243, 1)",
+	                 pointBackgroundColor: "rgba(33, 150, 243, 0.2)",
+	                 pointBorderWidth: "1"
+	           }]
+	         },
+	         options: {
+	             tooltips: {
+	                 displayColors: false,
+	                 callbacks: {
+	                     label: function(tooltipItem, data) {
+	                         var label = data.labels[tooltipItem.index];
+	                         return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+	                     }
+	                 }
+	             },
+	             legend: {
+	                 display: false,
+	             },
+	             title: {
+	                 display: true,
+	                 position: "top",
+	                 fontSize: 36,
+	                 fontStyle: "bold",
+	                 text: "SRI"
+	             },
+	             layout: {
+	                 padding: {
+	                     left: 10,
+	                     right: 10,
+	                     top: 10,
+	                     bottom: 10
+	                 }
+	             },
+	             scales: {
+	                 xAxes: [{
+	                     max: 110,
+	                     scaleLabel: {
+	                         display: true,
+	                         labelString: "OPR",
+	                         padding: {
+	                             top: 10,
+	                             bottom: 10,
+	                             left: 10,
+	                             right: 10
+	                         }
+	                     }
+	                 }],
+	                 yAxes: [{
+	                     max: 210,
+	                     scaleLabel: {
+	                         display: true,
+	                         labelString: "Tournament Scores",
+	                         padding: {
+	                             top: 10,
+	                             bottom: 10,
+	                             left: 10,
+	                             right: 10
+	                         }
+	                     }
+	                 }]
+	             }
+	         }
+	     });
+	</script>
+
+	<footer class="blue page-footer">
+		<div class="footer-copyright">
+			<div class="container">
+				© 2018 Anish Kachinthaya & Rishi Pappu <a class="grey-text text-lighten-4 right" href="http://www.dhsrobotics.com/" style="margin-right: 1%" target="_blank">Gael Force Robotics</a> <a class="grey-text text-lighten-4 right" href="http://www.github.com/anishk23733" style="margin-right: 1%" target="_blank">GitHub</a>
+			</div>
+		</div>
+	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js">
+	</script>
+</body>
 </html>

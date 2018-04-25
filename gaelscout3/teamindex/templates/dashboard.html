@@ -1,316 +1,394 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{team.name}}</title>
-    {% load static %}
-    <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+<head>
+	<meta charset="utf-8">
 
-    <script type="text/javascript">
-      oprs = {{ js_oprs }};
-      ranks = {{ js_ranks }};
-      mscores = {{ js_mscores }};
-      console.log(oprs);
-      console.log(ranks);
-      console.log(mscores);
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<title>{{team.name}}</title>
+</head>
 
-  </head>
-  <body>
-      <nav class="blue">
-          <div class="nav-wrapper">
-            <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'teamindex'%}">Team Index</a></li>
-              <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
-              <li><a href="{% url 'matches'%}">Matches</a></li>
-              <li><a href="{% url 'sri'%}">SRI</a></li>
-            </ul>
-          </div>
-      </nav>
+<body>
+	{% load static %}
+	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">{% load static %}
+	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
+	<script type="text/javascript">
+	     oprs = {{ js_oprs }};
+	     ranks = {{ js_ranks }};
+	     mscores = {{ js_mscores }};
+	     console.log(oprs);
+	     console.log(ranks);
+	     console.log(mscores);
+	</script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" rel="stylesheet">
 
-    <div class="container">
-    <h2>{{team.name}}</h2>
-    {% if research%}
-    <p>W-L Prediction: {{research.w}}—{{research.l}}</p>
-    {% endif %}
-    <p>Average OPR: {{team.avg_opr}}</p>
-    <p>OPR Percentile: {{team.opr_percentile}}%</p>
-    <p>Average max score: {{team.avg_mscore}}</p>
-    <p>Max score percentile: {{team.mscore_percentile}}%</p>
+    <nav class="blue">
+		<div class="nav-wrapper">
+			<a class="brand-logo" href="#" style="margin-left: 2.5%">GaelScout</a>
 
-    {% if matches %}
-    <h3>Match Schedule</h3>
-    <table class="mdl-data-table mdl-js-data-table">
-        <tr>
-            <th class="mdl-data-table__cell--non-numeric">Match Number</th>
-            <th class="mdl-data-table__cell--non-numeric">Field</th>
-            <th class="mdl-data-table__cell--non-numeric">Day</th>
-            <th class="mdl-data-table__cell--non-numeric">Time</th>
-            <th class="mdl-data-table__cell--non-numeric">Red 1</th>
-            <th class="mdl-data-table__cell--non-numeric">Red 1 OPR</th>
-            <th class="mdl-data-table__cell--non-numeric">Red 1 Max Score</th>
-            <th class="mdl-data-table__cell--non-numeric">Red 2</th>
-            <th class="mdl-data-table__cell--non-numeric">Red 2 OPR</th>
-            <th class="mdl-data-table__cell--non-numeric">Red 2 Max Score</th>
-            <th class="mdl-data-table__cell--non-numeric">Blue 1</th>
-            <th class="mdl-data-table__cell--non-numeric">Blue 1 OPR</th>
-            <th class="mdl-data-table__cell--non-numeric">Blue 1 Max Score</th>
-            <th class="mdl-data-table__cell--non-numeric">Blue 2</th>
-            <th class="mdl-data-table__cell--non-numeric">Blue 2 OPR</th>
-            <th class="mdl-data-table__cell--non-numeric">Blue 2 Max Score</th>
-            <th class="mdl-data-table__cell--non-numeric">Chance</th>
-        </tr>
-        {% for m in matches %}
-        {% for match in m %}
-        <tr>
-            <td><a href="{% url 'specmatch' match.number %}">{{ match.number }}</a></td>
-            <td>{{ match.field }}</td>
-            <td>{{ match.day }}</td>
-            <td>{{ match.time }} {{ match.phase }}</td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red1 %}">{{ match.red1 }}</a></td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_opr }}</td>
-            <td {% if  match.red1 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red1 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red1_mscore }}</td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.red2 %}">{{ match.red2 }}</a></td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red2_opr }}</td>
-            <td {% if  match.red2 == team.name and match.winner == "R" %} class="#00e676 green accent-3" {% elif match.red2 == team.name and match.winner == "B" %} style="background-color: red"{% endif %}>{{ match.red2_mscore }}</td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.blue1 %}">{{ match.blue1 }}</a></td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue1_opr }}</td>
-            <td {% if  match.blue1 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue1 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue1_mscore }}</td>
-            <td {% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}><a href="{% url 'dashboard' match.blue2 %}">{{ match.blue2 }}</a></td>
-            <td {% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_opr }}</td>
-            <td{% if  match.blue2 == team.name and match.winner == "B" %} class="#00e676 green accent-3" {% elif match.blue2 == team.name and match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.blue2_mscore }}</td>
-            <td {% if match.winner == "B" %} style="background-color: blue" {% elif match.winner == "R" %} style="background-color: red"{% endif %}>{{ match.chance }}%</td>
-        </tr>
-            {% endfor %}
-            {% endfor %}
-    </table>
-    {% endif %}
-    <div width="50px" height="20px">
-            <canvas id="oprBar" width="300" height="200"></canvas>
-    </div>
-    <div width="50px" height="20px">
-            <canvas id="rankBar" width="300" height="200"></canvas>
-    </div>
-    <div width="50px" height="20px">
-            <canvas id="matchBar" width="300" height="200"></canvas>
-    </div>
+			<ul class="right hide-on-med-and-down" id="nav-mobile">
+				<li>
+					<a href="{% url 'home' %}">Home</a>
+				</li>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
-</div>
-<footer class="blue page-footer">
-    <div class="footer-copyright">
-      <div class="container">
-      © 2018 Anish Kachinthaya & Rishi Pappu
+				<li>
+					<a href="{% url 'teamindex' %}">Team Index</a>
+				</li>
 
-      <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
-      <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </footer>
 
-    <script type="text/javascript">
-        oprs = {{ js_oprs }};
-        ranks = {{ js_ranks }};
-        mscores = {{ js_mscores }};
-        function randomColor(data){
-            var barArray = [];
-            var borderArray = [];
-            var rgbaBeginning = 'rgba(';
-            var rgbaBarEnd = ', 0.4)';
-            var rgbaBorderEnd = ', 1)';
-            for(var i = 0; i < data.length; i++) {
-                var totalColor = "";
-                var color1 = Math.round(Math.random() * 255);
-                var color2 = Math.round(Math.random() * 255);
-                var color3 = Math.round(Math.random() * 255);
-                totalBarColor = rgbaBeginning + color1 + ', ' + color2 + ', ' + color3 + rgbaBarEnd;
-                totalBorderColor = rgbaBeginning + color1 + ', ' + color2 + ', ' + color3 + rgbaBorderEnd;
-                barArray.push(totalBarColor);
-                borderArray.push(totalBorderColor);
-            }
-            var colorArray = [barArray, borderArray];
-            return colorArray
-        }
-        function dataIndex(data){
-            var stringDataList = [];
-            for(var i = 0; i < data.length; i++) {
-                stringifiedData = "Tournament " + i.toString();
-                stringDataList.push(stringifiedData);
-            }
-            return stringDataList;
-        }
-        var oprMin = Math.min(...oprs) - 5;
-        var rankMin = Math.min(...ranks);
-        var matchMin = Math.min(...mscores);
-        var oprColors = randomColor(oprs);
-        var rankColors = randomColor(ranks);
-        var matchColors = randomColor(mscores);
-        var matchBars = matchColors[0];
-        var matchBorders = matchColors[1];
-        var rankBars = rankColors[0];
-        var rankBorders = rankColors[1];
-        var oprBorders = oprColors[1];
-        var oprBars = oprColors[0];
-        var oprDataList = dataIndex(oprs);
-        var rankDataList = dataIndex(ranks);
-        var matchDataList = dataIndex(mscores);
-        var ctx_opr_bar = document.getElementById("oprBar").getContext("2d");
-        var ctx_rank_bar = document.getElementById("rankBar").getContext("2d");
-        var ctx_match_bar = document.getElementById("matchBar").getContext("2d");
-        var oprBar = new Chart(ctx_opr_bar, {
-        type: 'bar',
-        barPercentage: 1,
-        categoryPercentage: 1,
-        data: {
-            labels: oprDataList,
-            datasets: [{
-                label: 'OPR',
-                data: oprs,
-                backgroundColor: oprBars,
-                borderColor: oprBorders,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                displayColors: false
-            },
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                position: "top",
-                fontSize: 36,
-                fontStyle: "bold",
-                text: "OPR"
-            },
+				<li>
+					<a href="{% url 'divisionindex'%}">Division Index</a>
+				</li>
 
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 10
-                }
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true,
-                        steps: 10,
-                        stepValue: 5,
-                        min: oprMin,
-                    }
-                }]
-            }
-        }
-    });
-        var oprBar = new Chart(ctx_rank_bar, {
-        type: 'bar',
-        barPercentage: 1,
-        categoryPercentage: 1,
-        data: {
-            labels: rankDataList,
-            datasets: [{
-                label: 'Ranks',
-                data: ranks,
-                backgroundColor: rankBars,
-                borderColor: rankBorders,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                displayColors: false
-            },
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                position: "top",
-                fontSize: 36,
-                fontStyle: "bold",
-                text: "Ranks"
-            },
 
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 10
-                }
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true,
-                        min: rankMin,
-                        steps: 10,
-                        stepValue: 5
-                    }
-                }]
-            }
-        }
-    });
-        var oprBar = new Chart(ctx_match_bar, {
-        type: 'bar',
-        barPercentage: 1,
-        categoryPercentage: 1,
-        data: {
-            labels: matchDataList,
-            datasets: [{
-                label: 'Tournament Scores',
-                data: mscores,
-                backgroundColor: matchBars,
-                borderColor: matchBorders,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                displayColors: false
-            },
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                position: "top",
-                fontSize: 36,
-                fontStyle: "bold",
-                text: "Tournament Scores"
-            },
+				<li>
+					<a href="{% url 'matches'%}">Matches</a>
+				</li>
 
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 10
-                }
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true,
-                        min: matchMin,
-                        steps: 10,
-                        stepValue: 5
-                    }
-                }]
-            }
-        }
-    });
-    </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
-  </body>
+				<li>
+					<a href="{% url 'sri'%}">SRI</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
+
+
+	<div class="container">
+		<h2>{{team.name}}</h2>
+		{% if research%}
+
+		<p>W-L Prediction: {{research.w}}-{{research.l}}</p>
+		{% endif %}
+
+		<p>Average OPR: {{team.avg_opr}}</p>
+
+
+		<p>OPR Percentile: {{team.opr_percentile}}%</p>
+
+
+		<p>Average max score: {{team.avg_mscore}}</p>
+
+
+		<p>Max score percentile: {{team.mscore_percentile}}%</p>
+		{% if matches %}
+
+		<h3>Match Schedule</h3>
+		{% for m in matches %} {% for match in m %} {% endfor %} {% endfor %}
+
+		<table class="mdl-data-table mdl-js-data-table">
+			<tr>
+				<th class="mdl-data-table__cell--non-numeric">Match Number</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Field</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Day</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Time</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Red 1</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Red 1 OPR</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Red 1 Max Score</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Red 2</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Red 2 OPR</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Red 2 Max Score</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Blue 1</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Blue 1 OPR</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Blue 1 Max Score</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Blue 2</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Blue 2 OPR</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Blue 2 Max Score</th>
+
+				<th class="mdl-data-table__cell--non-numeric">Chance</th>
+			</tr>
+
+
+			<tr>
+				<td>
+					<a href="{%%20url%20'specmatch'%20match.number%20%}">{{ match.number }}</a>
+				</td>
+
+				<td>{{ match.field }}</td>
+
+				<td>{{ match.day }}</td>
+
+				<td>{{ match.time }} {{ match.phase }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.red1="=" match.winner="=" style="background-color: red" team.name="">
+					<a href="{%%20url%20'dashboard'%20match.red1%20%}">{{ match.red1 }}</a>
+				</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.red1="=" match.winner="=" style="background-color: red" team.name="">{{ match.red1_opr }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.red1="=" match.winner="=" style="background-color: red" team.name="">{{ match.red1_mscore }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.red2="=" match.winner="=" style="background-color: red" team.name="">
+					<a href="{%%20url%20'dashboard'%20match.red2%20%}">{{ match.red2 }}</a>
+				</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.red2="=" match.winner="=" style="background-color: red" team.name="">{{ match.red2_opr }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.red2="=" match.winner="=" style="background-color: red" team.name="">{{ match.red2_mscore }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.blue1="=" match.winner="=" style="background-color: red" team.name="">
+					<a href="{%%20url%20'dashboard'%20match.blue1%20%}">{{ match.blue1 }}</a>
+				</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.blue1="=" match.winner="=" style="background-color: red" team.name="">{{ match.blue1_opr }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.blue1="=" match.winner="=" style="background-color: red" team.name="">{{ match.blue1_mscore }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.blue2="=" match.winner="=" style="background-color: red" team.name="">
+					<a href="{%%20url%20'dashboard'%20match.blue2%20%}">{{ match.blue2 }}</a>
+				</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.blue2="=" match.winner="=" style="background-color: red" team.name="">{{ match.blue2_opr }}</td>
+
+				<td and="" class="#00e676 green accent-3" elif="" endif="" if="" match.blue2="=" match.winner="=" style="background-color: red" team.name="">{{ match.blue2_mscore }}</td>
+
+				<td elif="" endif="" if="" match.winner="=" style="background-color: blue; background-color: red">{{ match.chance }}%</td>
+			</tr>
+		</table>
+		{% endif %}
+
+		<div height="20px" width="50px">
+			<canvas height="200" id="oprBar" width="300">
+			</canvas>
+		</div>
+
+
+		<div height="20px" width="50px">
+			<canvas height="200" id="rankBar" width="300">
+			</canvas>
+		</div>
+
+
+		<div height="20px" width="50px">
+			<canvas height="200" id="matchBar" width="300">
+			</canvas>
+		</div>
+		<script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js">
+		</script>
+	</div>
+
+
+	<footer class="blue page-footer">
+		<div class="footer-copyright">
+			<div class="container">
+				© 2018 Anish Kachinthaya & Rishi Pappu <a class="grey-text text-lighten-4 right" href="http://www.dhsrobotics.com/" style="margin-right: 1%" target="_blank">Gael Force Robotics</a> <a class="grey-text text-lighten-4 right" href="http://www.github.com/anishk23733" style="margin-right: 1%" target="_blank">GitHub</a>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	       oprs = {{ js_oprs }};
+	       ranks = {{ js_ranks }};
+	       mscores = {{ js_mscores }};
+	       function randomColor(data){
+	           var barArray = [];
+	           var borderArray = [];
+	           var rgbaBeginning = 'rgba(';
+	           var rgbaBarEnd = ', 0.4)';
+	           var rgbaBorderEnd = ', 1)';
+	           for(var i = 0; i < data.length; i++) {
+	               var totalColor = "";
+	               var color1 = Math.round(Math.random() * 255);
+	               var color2 = Math.round(Math.random() * 255);
+	               var color3 = Math.round(Math.random() * 255);
+	               totalBarColor = rgbaBeginning + color1 + ', ' + color2 + ', ' + color3 + rgbaBarEnd;
+	               totalBorderColor = rgbaBeginning + color1 + ', ' + color2 + ', ' + color3 + rgbaBorderEnd;
+	               barArray.push(totalBarColor);
+	               borderArray.push(totalBorderColor);
+	           }
+	           var colorArray = [barArray, borderArray];
+	           return colorArray
+	       }
+	       function dataIndex(data){
+	           var stringDataList = [];
+	           for(var i = 0; i < data.length; i++) {
+	               stringifiedData = "Tournament " + i.toString();
+	               stringDataList.push(stringifiedData);
+	           }
+	           return stringDataList;
+	       }
+	       var oprMin = Math.min(...oprs) - 5;
+	       var rankMin = Math.min(...ranks);
+	       var matchMin = Math.min(...mscores);
+	       var oprColors = randomColor(oprs);
+	       var rankColors = randomColor(ranks);
+	       var matchColors = randomColor(mscores);
+	       var matchBars = matchColors[0];
+	       var matchBorders = matchColors[1];
+	       var rankBars = rankColors[0];
+	       var rankBorders = rankColors[1];
+	       var oprBorders = oprColors[1];
+	       var oprBars = oprColors[0];
+	       var oprDataList = dataIndex(oprs);
+	       var rankDataList = dataIndex(ranks);
+	       var matchDataList = dataIndex(mscores);
+	       var ctx_opr_bar = document.getElementById("oprBar").getContext("2d");
+	       var ctx_rank_bar = document.getElementById("rankBar").getContext("2d");
+	       var ctx_match_bar = document.getElementById("matchBar").getContext("2d");
+	       var oprBar = new Chart(ctx_opr_bar, {
+	       type: 'bar',
+	       barPercentage: 1,
+	       categoryPercentage: 1,
+	       data: {
+	           labels: oprDataList,
+	           datasets: [{
+	               label: 'OPR',
+	               data: oprs,
+	               backgroundColor: oprBars,
+	               borderColor: oprBorders,
+	               borderWidth: 1
+	           }]
+	       },
+	       options: {
+	           tooltips: {
+	               displayColors: false
+	           },
+	           legend: {
+	               display: false
+	           },
+	           title: {
+	               display: true,
+	               position: "top",
+	               fontSize: 36,
+	               fontStyle: "bold",
+	               text: "OPR"
+	           },
+
+	           layout: {
+	               padding: {
+	                   left: 10,
+	                   right: 10,
+	                   top: 10,
+	                   bottom: 10
+	               }
+	           },
+	           scales: {
+	               yAxes: [{
+	                   ticks: {
+	                       beginAtZero:true,
+	                       steps: 10,
+	                       stepValue: 5,
+	                       min: oprMin,
+	                   }
+	               }]
+	           }
+	       }
+	   });
+	       var oprBar = new Chart(ctx_rank_bar, {
+	       type: 'bar',
+	       barPercentage: 1,
+	       categoryPercentage: 1,
+	       data: {
+	           labels: rankDataList,
+	           datasets: [{
+	               label: 'Ranks',
+	               data: ranks,
+	               backgroundColor: rankBars,
+	               borderColor: rankBorders,
+	               borderWidth: 1
+	           }]
+	       },
+	       options: {
+	           tooltips: {
+	               displayColors: false
+	           },
+	           legend: {
+	               display: false
+	           },
+	           title: {
+	               display: true,
+	               position: "top",
+	               fontSize: 36,
+	               fontStyle: "bold",
+	               text: "Ranks"
+	           },
+
+	           layout: {
+	               padding: {
+	                   left: 10,
+	                   right: 10,
+	                   top: 10,
+	                   bottom: 10
+	               }
+	           },
+	           scales: {
+	               yAxes: [{
+	                   ticks: {
+	                       beginAtZero:true,
+	                       min: rankMin,
+	                       steps: 10,
+	                       stepValue: 5
+	                   }
+	               }]
+	           }
+	       }
+	   });
+	       var oprBar = new Chart(ctx_match_bar, {
+	       type: 'bar',
+	       barPercentage: 1,
+	       categoryPercentage: 1,
+	       data: {
+	           labels: matchDataList,
+	           datasets: [{
+	               label: 'Tournament Scores',
+	               data: mscores,
+	               backgroundColor: matchBars,
+	               borderColor: matchBorders,
+	               borderWidth: 1
+	           }]
+	       },
+	       options: {
+	           tooltips: {
+	               displayColors: false
+	           },
+	           legend: {
+	               display: false
+	           },
+	           title: {
+	               display: true,
+	               position: "top",
+	               fontSize: 36,
+	               fontStyle: "bold",
+	               text: "Tournament Scores"
+	           },
+
+	           layout: {
+	               padding: {
+	                   left: 10,
+	                   right: 10,
+	                   top: 10,
+	                   bottom: 10
+	               }
+	           },
+	           scales: {
+	               yAxes: [{
+	                   ticks: {
+	                       beginAtZero:true,
+	                       min: matchMin,
+	                       steps: 10,
+	                       stepValue: 5
+	                   }
+	               }]
+	           }
+	       }
+	   });
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js">
+	</script>
+</body>
 </html>

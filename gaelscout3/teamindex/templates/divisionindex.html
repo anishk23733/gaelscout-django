@@ -1,64 +1,99 @@
 <!DOCTYPE html>
+
 <html>
-    <head>
-        <title>Division Teams</title>
-        {% load static %}
-        <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
+<head>
+	<title>Division Teams</title>
+</head>
 
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<body>
+	{% load static %}
+	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">{% load static %}
+	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
 
-    </head>
-    <body>
-        <nav class="blue">
-            <div class="nav-wrapper">
-              <a href="#" class="brand-logo" style="margin-left: 2.5%">GaelScout</a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'teamindex'%}">Team Index</a></li>
-                <li><a href="{% url 'divisionindex'%}">Division Index</a></li>
-                <li><a href="{% url 'matches'%}">Matches</a></li>
-                <li><a href="{% url 'sri'%}">SRI</a></li>
-              </ul>
-            </div>
-        </nav>
-            <div class="container">
+    <nav class="blue">
+		<div class="nav-wrapper">
+			<a class="brand-logo" href="#" style="margin-left: 2.5%">GaelScout</a>
 
-        <h1>Research Division Team Index</h1>
-        <table>
-            <tr>
-                <th>Team Number</th>
-                <th>OPR</th>
-                <th>OPR Percentile</th>
-                <th>Max Score</th>
-                <th>Max Score Percentile</th>
-                <th>Average Rank</th>
-            </tr>
-            {% for team in teams %}
-            <tr>
-                <td><a href="{% url 'dashboard' team.name %}">{{ team.name }}</a></td>
-                <td>{{ team.opr }}</td>
-                <td>{{ team.opr_percentile }}%</td>
-                <td>{{ team.mscore }}</td>
-                <td>{{ team.mscore_percentile }}%</td>
-                <td>{{ team.rank }}</td>
-            </tr>
-                {% endfor %}
-        </table>
-    </div>
+			<ul class="right hide-on-med-and-down" id="nav-mobile">
+				<li>
+					<a href="{% url 'home' %}">Home</a>
+				</li>
 
-    <footer class="blue page-footer">
-        <div class="footer-copyright">
-          <div class="container">
-          © 2018 Anish Kachinthaya & Rishi Pappu
 
-          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.dhsrobotics.com/" target="_blank">Gael Force Robotics</a>
-          <a class="grey-text text-lighten-4 right" style="margin-right: 1%" href="http://www.github.com/anishk23733" target="_blank">GitHub</a>
-          </div>
-        </div>
-      </footer>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+				<li>
+					<a href="{% url 'teamindex' %}">Team Index</a>
+				</li>
 
-    </body>
+
+				<li>
+					<a href="{% url 'divisionindex'%}">Division Index</a>
+				</li>
+
+
+				<li>
+					<a href="{% url 'matches'%}">Matches</a>
+				</li>
+
+
+				<li>
+					<a href="{% url 'sri'%}">SRI</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+
+
+	<div class="container">
+		<h1>Research Division Team Index</h1>
+		{% for team in teams %} {% endfor %}
+
+		<table>
+			<tr>
+				<th>Team Number</th>
+
+				<th>OPR</th>
+
+				<th>OPR Percentile</th>
+
+				<th>Max Score</th>
+
+				<th>Max Score Percentile</th>
+
+				<th>Average Rank</th>
+			</tr>
+
+
+			<tr>
+				<td>
+					<a href="{%%20url%20'dashboard'%20team.name%20%}">{{ team.name }}</a>
+				</td>
+
+				<td>{{ team.opr }}</td>
+
+				<td>{{ team.opr_percentile }}%</td>
+
+				<td>{{ team.mscore }}</td>
+
+				<td>{{ team.mscore_percentile }}%</td>
+
+				<td>{{ team.rank }}</td>
+			</tr>
+		</table>
+	</div>
+
+
+	<footer class="blue page-footer">
+		<div class="footer-copyright">
+			<div class="container">
+				© 2018 Anish Kachinthaya & Rishi Pappu <a class="grey-text text-lighten-4 right" href="http://www.dhsrobotics.com/" style="margin-right: 1%" target="_blank">Gael Force Robotics</a> <a class="grey-text text-lighten-4 right" href="http://www.github.com/anishk23733" style="margin-right: 1%" target="_blank">GitHub</a>
+			</div>
+		</div>
+	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js">
+	</script>
+</body>
 </html>

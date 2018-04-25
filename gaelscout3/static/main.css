@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Evolve-Light';
+  src: url('./Evolve/MADE/Light/MADEEvolveSans-Light.eot');
+  src: url('./Evolve/MADE/Light/MADEEvolveSans-Light.woff2') format('woff2'),
+       url('./Evolve/MADE/Light/MADEEvolveSans-Light.woff') format('woff'),
+       url('./Evolve/MADE/Light/MADEEvolveSans-Light.ttf') format('truetype'),
+       url('./Evolve/MADE/Light/MADEEvolveSans-Light.svg#MADEEvolveSans-Light') format('svg'),
+       url('./Evolve/MADE/Light/MADEEvolveSans-Light.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+    font-family: 'Evolve-Light';
+}
+
+.pagination li {
+    margin: 2em auto;
+}
