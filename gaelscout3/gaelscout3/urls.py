@@ -25,6 +25,7 @@ urlpatterns = [
     path('<str:match_number>/match/', views.specmatch, name='specmatch'),
     path('divisionindex/', views.divisionindex, name='divisionindex'),
     path('researchview/', views.divisionindex, name='divisionindex'),
+    path('rankings/', views.rankings, name='rankings'),
     path('matches/', views.matches, name='matches'),
     path('teamindex/', views.teamindex, name='teamindex'),
     path('sri/', views.sri, name='sri'),

@@ -8,6 +8,9 @@ import json
 from raschietto import Matcher, Raschietto
 import arrow
 import pandas as pd
+from itertools import chain
+from operator import attrgetter
+
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
@@ -32,12 +35,35 @@ def dashboard(request, team_number):
     matchesr2 = Matches.objects.filter(red2=team_number)
     matchesb1 = Matches.objects.filter(blue1=team_number)
     matchesb2 = Matches.objects.filter(blue2=team_number)
+    # data['matches'] =  sorted(chain(matchesr1, matchesr2, matchesb1, matchesb2), key=lambda instance: instance.order)
+    # matchlist = []
+    # matches = matchesr1, matchesr2, matchesb1, matchesb2
+    # for match in matches:
+    #     for m in match:
+    #         matchlist.append(m)
+    # for i in matchlist:
+    #     q = i.number
+    #     q = q.replace("Q", "")
+    #     q = int(q)
+    #     i.order = q
+    # data['matches'] =  sorted(chain(matchesr1, matchesr2, matchesb1, matchesb2), key=attrgetter('order'))
     try:
         t = ResearchTeams.objects.get(name=team_number)
-        data['matches'] = matchesr1, matchesr2, matchesb1, matchesb2
+        matchlist = []
+        matches = matchesr1, matchesr2, matchesb1, matchesb2
+        for match in matches:
+            for m in match:
+                matchlist.append(m)
+        for i in matchlist:
+            q = i.number
+            q = q.replace("Q", "")
+            q = int(q)
+            i.order = q
+        data['matches'] = sorted(chain(matchesr1, matchesr2, matchesb1, matchesb2), key=attrgetter('order'))
         data['research'] = t
     except:
         pass # team is not in research division
+
     scores = Raschietto.from_url("https://vexdb.io/teams/view/{}?t=rankings".format(team_number))
     OPRPointer = Matcher('.opr')
     OPRList = OPRPointer(scores, multiple=True)
@@ -72,6 +98,19 @@ def divisionindex(request):
         teams = ResearchTeams.objects.filter(name__icontains=query)
     return render(request, 'divisionindex.html', {'teams': teams})
 
+def rankings(request):
+    teams = ResearchTeams.objects.all()
+    query = request.GET.get("q")
+    if query:
+        teams = ResearchTeams.objects.filter(name__icontains=query)
+    ranks = []
+    teams = sorted(teams, key = attrgetter("l"))
+
+    for team, rank in zip(teams, range(len(teams))):
+        ranks.append(rank+1)
+    ranklist = zip(teams, ranks)
+    return render(request, 'rankings.html', {'teams': ranklist})
+
 def researchview(request):
     teams = ResearchTeams.objects.all()
     return render(request, 'ninuse/researchbubble.html', {'teams': teams})
@@ -96,7 +135,7 @@ def sri(request):
 
 def matches(request):
     matches = Matches.objects.all()
-    teams = Teams.objects.all()
+    teams = ResearchTeams.objects.all()
     return render(request, 'matches.html', {'matches': matches, 'teams':teams})
 
 def specmatch(request, match_number):

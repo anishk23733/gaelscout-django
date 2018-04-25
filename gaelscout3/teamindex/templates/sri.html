@@ -3,19 +3,19 @@
 <html>
 <head>
 	<meta charset="utf-8">
-
-	<title>Home</title>
-</head>
-
-<body>
 	{% load static %}
-	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">{% load static %}
 	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
+	<link href='{% static "img/logo.png" %}' rel="shortcut icon" type="image/png">{% load static %}
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
 	</script>
+
+	<title>Home</title>
+</head>
+
+<body>
 	<script>
 	       nms = {{nums|safe}};
 	       op = {{oprs}};
@@ -25,37 +25,7 @@
 	       console.log(mscr);
 	</script>
 
-	<nav class="blue">
-		<div class="nav-wrapper">
-			<a class="brand-logo" href="#" style="margin-left: 2.5%">GaelScout</a>
-
-			<ul class="right hide-on-med-and-down" id="nav-mobile">
-				<li>
-					<a href="{% url 'home' %}">Home</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'teamindex' %}">Team Index</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'divisionindex'%}">Division Index</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'matches'%}">Matches</a>
-				</li>
-
-
-				<li>
-					<a href="{% url 'sri'%}">SRI</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+{% include "html/nav.html" %}
 
 
 	<div class="container">
@@ -63,7 +33,7 @@
 
 
 		<p>A max score to offensive point rating index of all teams in VEX In The Zone.</p>
-		<label for="teamName">Team Name:</label> <input id="teamName" name="teamName" placeholder="5327B" type="text" value=""> <button class="waves-effect waves-light btn-small" id="button">Search</button>
+		<label for="teamName">Team Name:</label> <input id="teamName" name="teamName" placeholder="5327B" type="text" value=""> <button class="waves-effect waves-light btn-small blue" id="button">Search</button>
 
 		<p id="orderedPair">OPR, Tournament Scores:</p>
 
@@ -180,14 +150,8 @@
 	         }
 	     });
 	</script>
+    {% include "html/footer.html" %}
 
-	<footer class="blue page-footer">
-		<div class="footer-copyright">
-			<div class="container">
-				© 2018 Anish Kachinthaya & Rishi Pappu <a class="grey-text text-lighten-4 right" href="http://www.dhsrobotics.com/" style="margin-right: 1%" target="_blank">Gael Force Robotics</a> <a class="grey-text text-lighten-4 right" href="http://www.github.com/anishk23733" style="margin-right: 1%" target="_blank">GitHub</a>
-			</div>
-		</div>
-	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js">
 	</script>
 </body>

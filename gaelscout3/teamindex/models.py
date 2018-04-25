@@ -59,3 +59,5 @@ class Matches(models.Model):
     winner = models.CharField(max_length=1,blank=False)
     chance = models.DecimalField(max_digits=5,
                                 decimal_places=2)
+    order = models.DecimalField(max_digits=5,
+                                decimal_places=2)
