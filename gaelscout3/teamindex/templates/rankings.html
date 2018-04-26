@@ -20,15 +20,21 @@
             <tr>
                 <th>Position</th>
                 <th>Team Number</th>
-                <th>Wins</th>
-                <th>Losses</th>
+                <th>OPR</th>
+                <th>OPR Percentile</th>
+                <th>Max Score</th>
+                <th>Max Score Percentile</th>
             </tr>
             {% for team, rank in teams %}
             <tr>
                 <td>{{ rank }}</td>
                 <td><a href="{% url 'dashboard' team.name %}">{{ team.name }}</a></td>
-                <td>{{ team.w }}</td>
-                <td>{{ team.l }}</td>
+                <!-- <td>{{ team.w }}</td>
+                <td>{{ team.l }}</td> -->
+                <td>{{ team.opr }}</td>
+                <td>{{ team.opr_percentile }}%</td>
+                <td>{{ team.mscore }}</td>
+                <td>{{ team.mscore_percentile }}%</td>
             </tr>
                 {% endfor %}
     </table>
