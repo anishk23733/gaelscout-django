@@ -136,7 +136,14 @@ def sri(request):
 def matches(request):
     matches = Matches.objects.all()
     teams = ResearchTeams.objects.all()
-    return render(request, 'matches.html', {'matches': matches, 'teams':teams})
+    bluecount = 0
+    redcount = 0
+    for match in matches:
+        if match.winner == "B":
+            bluecount+=1
+        elif match.winner == "R":
+            redcount+=1
+    return render(request, 'matches.html', {'matches': matches, 'teams':teams, 'redcount':redcount, 'bluecount':bluecount})
 
 def specmatch(request, match_number):
     matches = Matches.objects.get(number=match_number)

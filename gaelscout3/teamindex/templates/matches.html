@@ -5,15 +5,20 @@
         {% load static %}
         <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
         <link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link href='{% static "main.js" %}' rel="stylesheet" type="text/javascript">
 
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     </head>
     <body>
     {% include "html/nav.html" %}
     <div class="container">
+
     <div style="margin-left: 2.5%; margin-right: 2.5%">
-        <h1 >Match Predictions</h1>
+        <h1>Match Predictions</h1>
+        <!-- <div class="ct-chart ct-perfect-fourth"></div> -->
+
         <table>
             <tr>
                 <th>Match Number</th>
@@ -58,7 +63,21 @@
         </table>
     </div></div>
     {% include "html/footer.html" %}
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
 
+new Chartist.Pie('.ct-chart', {
+  series: [{{redcount}}, {{bluecount}}]
+},  
+{
+  donut: true,
+  donutWidth: 60,
+  donutSolid: true,
+  startAngle: 270,
+  showLabel: true
+}
+);
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     </body>
 </html>

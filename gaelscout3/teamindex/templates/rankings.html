@@ -6,7 +6,7 @@
     {% load static %}
     <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
 	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
-
+	<link href='{% static "main.js" %}' rel="stylesheet" type="text/javascript">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,15 +20,21 @@
             <tr>
                 <th>Position</th>
                 <th>Team Number</th>
-                <th>Wins</th>
-                <th>Losses</th>
+                <th>OPR</th>
+                <th>OPR Percentile</th>
+                <th>Max Score</th>
+                <th>Max Score Percentile</th>
             </tr>
             {% for team, rank in teams %}
             <tr>
                 <td>{{ rank }}</td>
                 <td><a href="{% url 'dashboard' team.name %}">{{ team.name }}</a></td>
-                <td>{{ team.w }}</td>
-                <td>{{ team.l }}</td>
+                <!-- <td>{{ team.w }}</td>
+                <td>{{ team.l }}</td> -->
+                <td>{{ team.opr }}</td>
+                <td>{{ team.opr_percentile }}%</td>
+                <td>{{ team.mscore }}</td>
+                <td>{{ team.mscore_percentile }}%</td>
             </tr>
                 {% endfor %}
     </table>

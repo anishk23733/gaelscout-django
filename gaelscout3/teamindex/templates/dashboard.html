@@ -6,6 +6,7 @@
     {% load static %}
     <link rel="shortcut icon" type="image/png" href='{% static "img/logo.png" %}'/>
 	<link href='{% static "main.css" %}' rel="stylesheet" type="text/css">
+	<link href='{% static "main.js" %}' rel="stylesheet" type="text/javascript">
 
     <script type="text/javascript">
       oprs = {{ js_oprs }};
@@ -85,12 +86,12 @@
     <div width="50px" height="20px">
             <canvas id="matchBar" width="300" height="200"></canvas>
     </div>
-    {% include "html/footer.html" %}
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
 </div>
+{% include "html/footer.html" %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
 
     <script type="text/javascript">
         oprs = {{ js_oprs }};
