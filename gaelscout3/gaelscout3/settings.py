@@ -25,7 +25,11 @@ SECRET_KEY = '!&hn6q)wwf(1-m+mr)3baaf!q)*sx-5npq+51!kr&^$sv3*)_6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'gaelscout.dhsrobotics.com',
+    '104.236.187.122',
+    'site.dhsrobotics.com'
+]
 
 
 # Application definition
