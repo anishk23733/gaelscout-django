@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'gaelscout.dhsrobotics.com',
     '104.236.187.122',
-    'site.dhsrobotics.com'
+    'site.dhsrobotics.com',
+    'http://127.0.0.1'
 ]
 
 
